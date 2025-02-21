@@ -1,0 +1,47 @@
+{
+	"schemaVersion": 1,
+	"id": "mcversionrenamer",
+	"version": "${version}",
+	"name": "MCVersionRenamer",
+	"description": "A simple Minecraft mod that lets you rename your game version in the main menu for better organization and customization.",
+	"authors": [
+		"KyfStore11k"
+	],
+	"contact": {
+		"homepage": "https://kyfstore.com",
+		"sources": "https://github.com/KyfStore11k/MCVersionRenamer"
+	},
+	"license": "MIT",
+	"icon": "assets/mcversionrenamer/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamer",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerDataGenerator",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			"com.kyfstore.mcversionrenamer.MCVersionRenamerClient"
+		]
+	},
+	"mixins": [
+		"mcversionrenamer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

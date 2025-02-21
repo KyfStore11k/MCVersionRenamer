@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.kyfstore.mcversionrenamer.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
