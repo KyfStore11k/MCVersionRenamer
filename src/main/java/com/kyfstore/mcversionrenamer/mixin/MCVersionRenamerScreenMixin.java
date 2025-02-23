@@ -43,20 +43,18 @@ public class MCVersionRenamerScreenMixin extends Screen {
                 }
         ).dimensions(x, y, width, height).build();
 
-        customButton.visible = true;
+        customButton.visible = MCVersionPublicData.customButtonIsVisible;
+
         this.addDrawableChild(customButton);
+    }
+
+    @Inject(method = "tick", at = @At("HEAD"))
+    private void onTick(CallbackInfo ci) {
+        customButton.visible = MCVersionPublicData.customButtonIsVisible;
     }
 
     @ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
     private String render(String value) {
         return MCVersionPublicData.versionText;
-    }
-
-    public String getVersionText() {
-        return MCVersionPublicData.versionText;
-    }
-
-    public void setVersionText(String newText) {
-        MCVersionPublicData.versionText = newText;
     }
 }

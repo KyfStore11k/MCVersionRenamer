@@ -11,11 +11,11 @@ object KeyInputHandler {
     const val KEY_CATEGORY_MCVERSIONRENAMER: String = "key.category.mcversionrenamer"
     const val KEY_TOGGLE_BUTTON: String = "key.mcversionrenamer.togglebutton"
 
-    var toggleButtonKey: KeyBinding? = null
+    lateinit var toggleButtonKey: KeyBinding
 
     fun registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(ClientTickEvents.EndTick { client: MinecraftClient? ->
-            if (toggleButtonKey!!.wasPressed()) {
+            if (toggleButtonKey.wasPressed()) {
             }
         })
     }

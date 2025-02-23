@@ -1,6 +1,8 @@
 ﻿package com.kyfstore.mcversionrenamer
 
+import com.kyfstore.mcversionrenamer.data.MCVersionPublicData
 import com.kyfstore.mcversionrenamer.event.KeyInputHandler
+import com.kyfstore.mcversionrenamer.mixin.MCVersionRenamerScreenMixin
 import com.kyfstore.mcversionrenamer.rewrites.MCVersionRenamerMinecraftVersionClass
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
@@ -34,6 +36,15 @@ class MCVersionRenamerClient : ClientModInitializer {
         @JvmStatic
         fun setClientWindowName(newTitle: String) {
             publicVersionClass?.name = newTitle
+        }
+
+        @JvmStatic
+        fun toggleButtonVisibility() {
+            if (MCVersionPublicData.customButtonIsVisible) {
+                MCVersionPublicData.customButtonIsVisible = false
+            } else if (!MCVersionPublicData.customButtonIsVisible) {
+                MCVersionPublicData.customButtonIsVisible = true
+            }
         }
     }
 }
