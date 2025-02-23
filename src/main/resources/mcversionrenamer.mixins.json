@@ -6,7 +6,8 @@
 		"MCVersionRenamerScreenMixin"
 	],
 	"client": [
-		"TitleScreenMixin"
+		"TitleScreenMixin",
+		"DebugScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
