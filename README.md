@@ -18,6 +18,9 @@ MCVersionRenamer requires a few dependencies to work (some dependencies may be s
 - YetAnotherConfigLib (YACL): https://modrinth.com/mod/yacl
 - MCVersionRenamer: https://github.com/KyfStore11k/MCVersionRenamer/releases (PS: This is the mod your viewing right now!)
 
+## Working On
+- Compatibility with BetterF3 mod (https://modrinth.com/mod/betterf3)
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
