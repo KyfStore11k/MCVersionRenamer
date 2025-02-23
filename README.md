@@ -20,6 +20,7 @@ MCVersionRenamer requires a few dependencies to work (some dependencies may be s
 
 ## Working On
 - Compatibility with BetterF3 mod (https://modrinth.com/mod/betterf3)
+- Shading [LibGui](https://github.com/CottonMC/LibGui/releases) by [CottonMC](https://github.com/CottonMC) into MCVersionRenamer
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
