@@ -17,14 +17,12 @@
 	"entrypoints": {
 		"main": [
 			{
-				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamer",
-				"adapter": "kotlin"
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamer"
 			}
 		],
 		"fabric-datagen": [
 			{
-				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerDataGenerator",
-				"adapter": "kotlin"
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerDataGenerator"
 			}
 		],
 		"client": [
@@ -38,11 +36,6 @@
 		"fabricloader": ">=0.16.10",
 		"minecraft": "~1.21.4",
 		"java": ">=21",
-		"fabric-api": "*",
-		"fabric-language-kotlin": "*",
-		"yet_another_config_lib_v3": ">=3.6.1+1.21.2-fabric"
-	},
-	"suggests": {
-		"another-mod": "*"
+		"fabric-api": "*"
 	}
 }
