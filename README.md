@@ -1,4 +1,5 @@
-﻿# MCVersionRenamer
+# ﻿MCVersionRenamer
+
 MCVersionRenamer is a fun tool to rename your Minecraft version to whatever you want!
 
 ## Features
@@ -11,11 +12,8 @@ MCVersionRenamer is a fun tool to rename your Minecraft version to whatever you 
 - Run Minecraft: Pretty simple, just run Minecraft.
 
 ## (IMPORTANT!)
-MCVersionRenamer requires a few dependencies to work (some dependencies may be shaded later once I get around to that):
-- LibGUI: https://github.com/CottonMC/LibGui/releases/
+MCVersionRenamer requires a few dependencies to work:
 - Fabric API: https://modrinth.com/mod/fabric-api
-- Fabric Language Kotlin: https://modrinth.com/mod/fabric-language-kotlin
-- YetAnotherConfigLib (YACL): https://modrinth.com/mod/yacl
 - MCVersionRenamer: https://github.com/KyfStore11k/MCVersionRenamer/releases (PS: This is the mod your viewing right now!)
 
 ## Working On
