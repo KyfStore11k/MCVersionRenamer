@@ -1,10 +1,10 @@
 ﻿# MCVersionRenamer
-MCVersionRenamer is a tool designed to assist Minecraft mod developers in managing and renaming Minecraft version files. It streamlines the process of updating and maintaining mod compatibility across different Minecraft versions.
+MCVersionRenamer is a fun tool to rename your Minecraft version to whatever you want!
 
 ## Features
-- Version Management: Easily rename and organize Minecraft version files to match your mod's requirements.
-- Compatibility Support: Ensure your mod functions correctly across various Minecraft versions.
-- User-Friendly Interface: Navigate through the tool with ease, thanks to its intuitive design.
+- Easily rename MC with a simple button and text field.
+- The Button toggable to hide it
+- It even works in the F3 debug menu!
 ## Installation
 - Download: Visit the Releases section of the repository to download the latest version.
 - Setup: Put the `mcversionrenamer-<latest-release-version>.jar` into your `mods` folder of your Fabric installation.
@@ -20,7 +20,6 @@ MCVersionRenamer requires a few dependencies to work (some dependencies may be s
 
 ## Working On
 - Compatibility with BetterF3 mod (https://modrinth.com/mod/betterf3)
-- Shading [LibGui](https://github.com/CottonMC/LibGui/releases) by [CottonMC](https://github.com/CottonMC) into MCVersionRenamer
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
