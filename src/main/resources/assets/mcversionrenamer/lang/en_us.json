@@ -1,4 +1,8 @@
 ﻿{
   "key.category.mcversionrenamer": "MC Version Renamer Keybinds",
-  "key.mcversionrenamer.togglebutton": "Toggle Version Change Button Visibility"
+  "key.mcversionrenamer.togglebutton": "Toggle Version Change Button Visibility",
+
+  "text.betterf3.module.versiontextchanger": "MCVersionRenamer Custom Version Text",
+
+  "text.config.mcversionrenamer-config.title": "MCVersionRenamer Config"
 }

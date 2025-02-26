@@ -3,7 +3,7 @@
 	"id": "mcversionrenamer",
 	"version": "${version}",
 	"name": "MCVersionRenamer",
-	"description": "A simple Minecraft mod that lets you rename your game version in the main menu for better organization and customization.",
+	"description": "MCVersionRenamer is a fun tool to rename your Minecraft version to whatever you want!",
 	"authors": [
 		"KyfStore11k"
 	],
@@ -37,5 +37,8 @@
 		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
+	},
+	"recommends": {
+		"modmenu": ">=13.0.2"
 	}
 }

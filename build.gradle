@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
+	id 'checkstyle'
 }
 
 version = project.mod_version
@@ -23,8 +24,14 @@ repositories {
 	}
 
 	maven {
-		name 'Xander Maven'
-		url 'https://maven.isxander.dev/releases'
+		name = "Terraformers"
+		url = "https://maven.terraformersmc.com/"
+	}
+
+	maven { url 'https://maven.wispforest.io/releases/' }
+
+	flatDir {
+		dirs 'libs'
 	}
 }
 
@@ -38,12 +45,19 @@ dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation include("io.github.cottonmc:LibGui:12.0.1+1.21.2")
+
+	modCompileOnly files("libs/BetterF3-13.0.0-Fabric-1.21.4.jar")
+
+	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+	include "io.wispforest:owo-sentinel:${project.owo_version}"
+	annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
 }
 
 processResources {
