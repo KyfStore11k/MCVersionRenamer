@@ -12,15 +12,21 @@ MCVersionRenamer is a tool designed to assist Minecraft mod developers in managi
 
 ## (IMPORTANT!)
 MCVersionRenamer requires a few dependencies to work (some dependencies may be shaded later once I get around to that):
-- LibGUI: https://github.com/CottonMC/LibGui/releases/
 - Fabric API: https://modrinth.com/mod/fabric-api
-- Fabric Language Kotlin: https://modrinth.com/mod/fabric-language-kotlin
-- YetAnotherConfigLib (YACL): https://modrinth.com/mod/yacl
 - MCVersionRenamer: https://github.com/KyfStore11k/MCVersionRenamer/releases (PS: This is the mod your viewing right now!)
 
+MCVersionRenamer also recommends a few dependencies:
+- ModMenu: https://modrinth.com/mod/modmenu
+- BetterF3: https://modrinth.com/mod/betterf3
+
+## External Mod Notes
+
+### BetterF3:
+
+(*For BetterF3, you will **HAVE** to install Mod Menu!*) Begin by opening the `Mods` tab, and edit the BetterF3 config settings. Select `Left Modules` and delete the `Minecraft Module`. Next press `Add New Module` and add the `MCVersionRenamer Custom Version Text` module. If it appears at the bottom, just scroll down, and press the up arrow until it reaches the top of the list. Finally, save the config settings and exit. When you play Minecraft now, it should be updated to the MCVersionRenamer custom version text that you set.
+
 ## Working On
-- Compatibility with BetterF3 mod (https://modrinth.com/mod/betterf3)
-- Shading [LibGui](https://github.com/CottonMC/LibGui/releases) by [CottonMC](https://github.com/CottonMC) into MCVersionRenamer
+Nothing!
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
