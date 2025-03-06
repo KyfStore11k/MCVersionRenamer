@@ -27,6 +27,6 @@ public class VersionTextChangerModule extends MinecraftModule {
 
     @Override
     public void update(MinecraftClient client) {
-        lines.get(0).value(I18n.translate(MCVersionPublicData.versionText));
+        lines.get(0).value(I18n.translate(MCVersionPublicData.f3Text));
     }
 }

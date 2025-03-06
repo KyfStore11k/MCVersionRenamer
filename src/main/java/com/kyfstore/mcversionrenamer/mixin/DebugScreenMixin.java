@@ -25,7 +25,7 @@ public class DebugScreenMixin {
 
         List<String> newText = new ArrayList<>();
 
-        newText.add(MCVersionPublicData.versionText);
+        newText.add(MCVersionPublicData.f3Text);
 
         if (originalText.size() > 1) {
             newText.addAll(originalText.subList(1, originalText.size()));

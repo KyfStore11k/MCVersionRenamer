@@ -1,5 +1,6 @@
 package com.kyfstore.mcversionrenamer.gui;
 
+import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
@@ -28,8 +29,12 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
         WButton button = new WButton(Text.literal("Set Text"));
         button.setIcon(new ItemIcon(new ItemStack(Items.LIME_WOOL)));
         button.setOnClick(() -> {
-            MCVersionRenamerClient.setClientWindowName(textField.getText());
-            MCVersionPublicData.versionText = textField.getText();
+            MCVersionRenamer.CONFIG.versionTextSettings.titleText(textField.getText());
+            MCVersionRenamer.CONFIG.versionTextSettings.versionText(textField.getText());
+            MCVersionRenamer.CONFIG.versionTextSettings.f3Text(textField.getText());
+            MCVersionRenamerClient.setClientWindowName(MCVersionRenamer.CONFIG.versionTextSettings.titleText());
+            MCVersionPublicData.versionText = MCVersionRenamer.CONFIG.versionTextSettings.versionText();
+            MCVersionPublicData.f3Text = MCVersionRenamer.CONFIG.versionTextSettings.f3Text();
             MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });
@@ -41,8 +46,13 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
         WButton defaultButton = new WButton(Text.literal("Default"));
         defaultButton.setIcon(new ItemIcon(new ItemStack(Items.WHITE_WOOL)));
         defaultButton.setOnClick(() -> {
-            MCVersionRenamerClient.setClientWindowName("Minecraft* 1.21.4");
-            MCVersionPublicData.versionText = "Minecraft* 1.21.4/Fabric (Modded)";
+            MCVersionRenamer.CONFIG.versionTextSettings.versionText(MCVersionPublicData.defaultVersionText);
+            MCVersionRenamer.CONFIG.versionTextSettings.titleText(MCVersionPublicData.defaultTitleText);
+            MCVersionRenamer.CONFIG.versionTextSettings.f3Text(MCVersionPublicData.defaultF3Text);
+            MCVersionRenamerClient.setClientWindowName(MCVersionPublicData.defaultTitleText);
+            MCVersionPublicData.titleText = MCVersionPublicData.defaultTitleText;
+            MCVersionPublicData.versionText = MCVersionPublicData.defaultVersionText;
+            MCVersionPublicData.f3Text = MCVersionPublicData.defaultF3Text;
             MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });

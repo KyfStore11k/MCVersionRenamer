@@ -7,7 +7,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class MCVersionRenamer implements ModInitializer {
     public static final String MOD_ID = "mcversionrenamer";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
