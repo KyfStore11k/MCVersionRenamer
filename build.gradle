@@ -4,6 +4,8 @@ plugins {
 	id 'checkstyle'
 }
 
+def generatedVersionDir = layout.buildDirectory.dir("generated-version")
+
 version = project.mod_version
 group = project.maven_group
 
@@ -58,6 +60,11 @@ dependencies {
 	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
 	include "io.wispforest:owo-sentinel:${project.owo_version}"
 	annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
+
+	// https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+	implementation include("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+	// https://mvnrepository.com/artifact/com.squareup.okio/okio
+	implementation include("com.squareup.okio:okio:3.10.2")
 }
 
 processResources {
@@ -72,11 +79,36 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
+tasks.register('generateVersionProperties') {
+	doLast {
+		def propertiesFile = generatedVersionDir.get().file("version.properties").asFile
+		propertiesFile.parentFile.mkdirs()
+
+		def properties = new Properties()
+		properties.setProperty("version", project.version.toString())
+
+		// Use FileWriter to write to the file
+		propertiesFile.withWriter { writer ->
+			properties.store(writer, null)
+		}
+	}
+}
+
+tasks.named("processResources") {
+	dependsOn generateVersionProperties
+}
+
 java {
 	withSourcesJar()
 
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
+}
+
+sourceSets {
+	main {
+		resources.srcDir(generatedVersionDir)
+	}
 }
 
 jar {

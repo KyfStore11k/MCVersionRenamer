@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.libapi;
+package com.kyfstore.mcversionrenamer.libapi.core;
 
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 

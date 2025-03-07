@@ -1,10 +1,11 @@
 package com.kyfstore.mcversionrenamer;
 
-import com.kyfstore.mcversionrenamer.customlibs.modmenu.for_owolib.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.customlibs.modmenu.for_owolib.MCVersionRenamerConfigModel;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.event.KeyInputHandler;
-import com.kyfstore.mcversionrenamer.libapi.TitleTextApi;
+import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerGui;
+import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerScreen;
+import com.kyfstore.mcversionrenamer.libapi.core.TitleTextApi;
+import com.kyfstore.mcversionrenamer.libapi.version.VersionCheckerApi;
 import com.kyfstore.mcversionrenamer.rewrites.MCVersionRenamerMinecraftVersionClass;
 import com.kyfstore.mcversionrenamer.rewrites.MCVersionRenamerMinecraftGameVersion;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,9 +14,14 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.TitleScreen;
 
 @Environment(EnvType.CLIENT)
 public class MCVersionRenamerClient implements ClientModInitializer {
+
+    private static final VersionCheckerApi versionChecker = new VersionCheckerApi();
+
+    private static boolean hasCheckedVersion = false;
 
     @Override
     public void onInitializeClient() {
@@ -24,6 +30,8 @@ public class MCVersionRenamerClient implements ClientModInitializer {
         publicVersionClass = versionClass;
 
         KeyInputHandler.register();
+
+        versionChecker.onEnable(this);
 
         ScreenEvents.AFTER_INIT.register((minecraftClient, screen, i, i1) -> {
             setClientWindowName(MCVersionRenamer.CONFIG.versionTextSettings.titleText());
@@ -36,6 +44,10 @@ public class MCVersionRenamerClient implements ClientModInitializer {
             MCVersionPublicData.f3Text = MCVersionRenamer.CONFIG.versionTextSettings.f3Text();
             if (client != null && client.getWindow() != null) {
                 TitleTextApi.setTitleText(client, versionClass.getName());
+                if (client.currentScreen instanceof TitleScreen && !hasCheckedVersion) {
+                    hasCheckedVersion = true;
+                    versionChecker.checkVersion(client);
+                }
             }
         });
     }

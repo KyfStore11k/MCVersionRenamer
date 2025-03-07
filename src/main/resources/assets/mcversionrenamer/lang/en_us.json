@@ -10,5 +10,9 @@
   "text.config.mcversionrenamer-config.category.versionTextSettings": "Version Text Settings",
   "text.config.mcversionrenamer-config.option.versionTextSettings.versionText": "Version Text",
   "text.config.mcversionrenamer-config.option.versionTextSettings.titleText": "Title Text",
-  "text.config.mcversionrenamer-config.option.versionTextSettings.f3Text": "F3 Text"
+  "text.config.mcversionrenamer-config.option.versionTextSettings.f3Text": "F3 Text",
+  "text.config.mcversionrenamer-config.option.shouldPopenVersionModal": "Should Open Version Modal?",
+
+  "text.mcversionrenamer.modal.oldVersionText": "There is a newer version of MCVersionRenamer available (%s)! If you would like to update please visit the Modrinth/GitHub/CurseForge page.",
+  "text.mcversionrenamer.modal.newVersionText": "It appears you have a version of MCVersionRenamer that is newer than the latest version (%s). I will assume this is an early dev version and ignore this warning. To dismiss this message, please press the 'Close' button below."
 }

@@ -25,8 +25,8 @@ MCVersionRenamer also recommends a few dependencies:
 
 (*For BetterF3, you will **HAVE** to install Mod Menu!*) Begin by opening the `Mods` tab, and edit the BetterF3 config settings. Select `Left Modules` and delete the `Minecraft Module`. Next press `Add New Module` and add the `MCVersionRenamer Custom Version Text` module. If it appears at the bottom, just scroll down, and press the up arrow until it reaches the top of the list. Finally, save the config settings and exit. When you play Minecraft now, it should be updated to the MCVersionRenamer custom version text that you set.
 
-## Working On
-Nothing!
+## Working On (*Not Implemented*)
+- Plugin Extensions: Soon, you can make your own plugins to extend, and implement into MCVersionRenamer by just dragging your plugin (.jar ext) into a ./mcvrplugins directory!
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.

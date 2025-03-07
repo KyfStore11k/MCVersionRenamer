@@ -2,6 +2,7 @@ package com.kyfstore.mcversionrenamer;
 
 import com.kyfstore.mcversionrenamer.customlibs.betterf3.VersionTextChangerModule;
 import com.kyfstore.mcversionrenamer.customlibs.modmenu.for_owolib.MCVersionRenamerConfig;
+import com.kyfstore.mcversionrenamer.libapi.version.VersionCheckerApi;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;

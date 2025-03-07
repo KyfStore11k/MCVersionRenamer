@@ -12,6 +12,8 @@ import io.wispforest.owo.config.annotation.SectionHeader;
 public class MCVersionRenamerConfigModel {
 
     @SectionHeader("general-settings")
+    public boolean shouldPopenVersionModal = true;
+
     @Nest
     public VersionTextSettings versionTextSettings = new VersionTextSettings();
 
