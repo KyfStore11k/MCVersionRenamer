@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.libapi.version;
+package com.kyfstore.mcversionrenamer.libapi.core.version;
 
 public class VersionComparator {
 

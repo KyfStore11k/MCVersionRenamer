@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.customlibs.modmenu.for_owolib;
+package com.kyfstore.mcversionrenamer.customlibs.owolib;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
@@ -13,6 +13,7 @@ public class MCVersionRenamerConfigModel {
 
     @SectionHeader("general-settings")
     public boolean shouldPopenVersionModal = true;
+    public boolean useLegacyButton = false;
 
     @Nest
     public VersionTextSettings versionTextSettings = new VersionTextSettings();

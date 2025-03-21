@@ -9,24 +9,31 @@
 	],
 	"contact": {
 		"homepage": "https://kyfstore.com",
-		"sources": "https://github.com/KyfStore11k/MCVersionRenamer"
+		"sources": "https://github.com/KyfStore11k/MCVersionRenamer",
+		"issues": "https://github.com/KyfStore11k/MCVersionRenamer/issues",
+		"email": "support@kyfstore.com"
 	},
 	"license": "MIT",
 	"icon": "assets/mcversionrenamer/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			{
+				"adapter": "kotlin",
 				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamer"
 			}
 		],
 		"fabric-datagen": [
 			{
+				"adapter": "kotlin",
 				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerDataGenerator"
 			}
 		],
 		"client": [
-			"com.kyfstore.mcversionrenamer.MCVersionRenamerClient"
+			{
+				"adapter": "kotlin",
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerClient"
+			}
 		]
 	},
 	"mixins": [
@@ -34,11 +41,21 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.10",
+		"fabric-language-kotlin": ">=1.10.8+kotlin.1.9.0",
 		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
 	"recommends": {
-		"modmenu": ">=13.0.2"
+		"modmenu": ">=13.0.2",
+		"betterf3": ">=13.0.0",
+		"clean-f3": ">=0.4.9",
+		"fancymenu": ">=2.3.6"
+	},
+	"suggests": {
+		"modmenu": ">=13.0.2",
+		"betterf3": ">=13.0.0",
+		"clean-f3": ">=0.4.9",
+		"fancymenu": ">=2.3.6"
 	}
 }

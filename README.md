@@ -18,15 +18,25 @@ MCVersionRenamer requires a few dependencies to work (some dependencies may be s
 MCVersionRenamer also recommends a few dependencies:
 - ModMenu: https://modrinth.com/mod/modmenu
 - BetterF3: https://modrinth.com/mod/betterf3
+- CleanF3: https://modrinth.com/mod/clean-f3
+
+**If you encounter any errors, please make an issue immediately and I will fix it as fast as possible.**
 
 ## External Mod Notes
 
 ### BetterF3:
 
-(*For BetterF3, you will **HAVE** to install Mod Menu!*) Begin by opening the `Mods` tab, and edit the BetterF3 config settings. Select `Left Modules` and delete the `Minecraft Module`. Next press `Add New Module` and add the `MCVersionRenamer Custom Version Text` module. If it appears at the bottom, just scroll down, and press the up arrow until it reaches the top of the list. Finally, save the config settings and exit. When you play Minecraft now, it should be updated to the MCVersionRenamer custom version text that you set.
+(*For BetterF3, you will **HAVE** to install Mod Menu!*) Begin by opening the `Mods` tab, and edit the BetterF3 config settings. Select `Left Modules` and delete the `Minecraft Module`. Next press `Add New Module` and add the `MCVersionRenamer Custom Version Text` module. If it appears at the bottom, scroll down, and press the up arrow until it reaches the top of the list. Finally, save the config settings and exit. When you play Minecraft now, it should be updated to the MCVersionRenamer custom version text that you set.
+
+### FancyMenu:
+
+FancyMenu (as of now) currently has half-implemented functionality.
+I will be attempting to fix the scenario in which if `Current Screen Customization` is enabled,
+it will overwrite MCVersionRenamer's custom version text
+(TitleScreen only).
 
 ## Working On (*Not Implemented*)
-- Plugin Extensions: Soon, you can make your own plugins to extend, and implement into MCVersionRenamer by just dragging your plugin (.jar ext) into a ./mcvrplugins directory!
+- FancyMenu and Essential Mod Hooks for MCVersionRenamer!
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.

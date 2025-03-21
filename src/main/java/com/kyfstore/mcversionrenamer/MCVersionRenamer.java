@@ -1,8 +1,10 @@
 package com.kyfstore.mcversionrenamer;
 
 import com.kyfstore.mcversionrenamer.customlibs.betterf3.VersionTextChangerModule;
-import com.kyfstore.mcversionrenamer.customlibs.modmenu.for_owolib.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.libapi.version.VersionCheckerApi;
+import com.kyfstore.mcversionrenamer.customlibs.owolib.MCVersionRenamerConfig;
+import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control.PluginManager;
+import de.keksuccino.fancymenu.FancyMenu;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
@@ -16,6 +18,15 @@ public class MCVersionRenamer implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        setupDefaultInit();
+        setupModHooks();
+        setupPlugins();
+    }
+
+    private void setupDefaultInit() {
+    }
+
+    private void setupModHooks() {
         if (FabricLoader.getInstance().isModLoaded("betterf3")) {
             LOGGER.info("BetterF3 loaded! Initiating BetterF3 hooks for MCVersionRenamer...");
 
@@ -23,5 +34,19 @@ public class MCVersionRenamer implements ModInitializer {
         } else {
             LOGGER.info("Can't find mod; BetterF3; skipped BetterF3 related hooks...");
         }
+        if (FabricLoader.getInstance().isModLoaded("fancymenu")) {
+            MCVersionPublicData.fancyMenuIsLoaded = true;
+        } else {
+            LOGGER.info("Can't find mod; FancyMenu; skipped FancyMenu related hooks...");
+        }
+        if (FabricLoader.getInstance().isModLoaded("modmenu")) {
+            MCVersionPublicData.modMenuIsLoaded = true;
+        } else {
+            LOGGER.info("Can't find mod; ModMenu; skipped ModMenu related hooks...");
+        }
+    }
+
+    private void setupPlugins() {
+        PluginManager.loadPlugins();
     }
 }

@@ -5,14 +5,15 @@ import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
-import io.github.cottonmc.cotton.gui.widget.icon.ItemIcon;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import io.github.cottonmc.cotton.gui.widget.icon.ItemIcon;
 
 public class VersionCheckerGui extends LightweightGuiDescription {
     public enum VersionPopupModalType {
@@ -32,7 +33,7 @@ public class VersionCheckerGui extends LightweightGuiDescription {
         root.setInsets(Insets.ROOT_PANEL);
 
         WButton closeButton = new WButton(Text.literal("Close"));
-        // closeButton.setIcon(new ItemIcon(new ItemStack(Items.RED_WOOL))); /* Minecraft Can't Start With This For Some Reason? */
+        // closeButton.setIcon(new ItemIcon(new ItemStack(Items.RED_WOOL))); // This may error in some scenarios!
         closeButton.setOnClick(() -> MinecraftClient.getInstance().setScreen(new TitleScreen()));
 
         WLabel oldVersionText1 = new WLabel(Text.literal("There is a newer version of MCVersionRenamer"));

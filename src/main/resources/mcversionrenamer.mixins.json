@@ -3,11 +3,12 @@
 	"package": "com.kyfstore.mcversionrenamer.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"MCVersionRenamerScreenMixin"
+		"FancyMenuMixin"
 	],
 	"client": [
 		"TitleScreenMixin",
-		"DebugScreenMixin"
+		"DebugScreenMixin",
+		"MCVersionRenamerScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -11,4 +11,7 @@ public class MCVersionPublicData {
     public static String titleText = defaultTitleText;
     public static String f3Text = defaultF3Text;
     public static boolean customButtonIsVisible = true;
+
+    public static boolean modMenuIsLoaded = false;
+    public static boolean fancyMenuIsLoaded = false;
 }
