@@ -37,6 +37,7 @@ it will overwrite MCVersionRenamer's custom version text
 
 ## Working On (*Not Implemented*)
 - FancyMenu and Essential Mod Hooks for MCVersionRenamer!
+- 1.21.5 Support
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.

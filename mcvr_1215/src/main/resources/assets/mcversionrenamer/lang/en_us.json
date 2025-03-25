@@ -1,0 +1,16 @@
+﻿{
+  "key.category.mcversionrenamer": "MCVersionRenamer",
+  "key.mcversionrenamer.togglebutton": "Toggle Version Change Button Visibility",
+
+  "text.betterf3.module.versiontextchanger": "MCVersionRenamer Custom Version Text",
+
+  "text.config.mcversionrenamer-config.title": "MCVersionRenamer Config",
+
+  "text.config.mcversionrenamer-config.section.general-settings": "General Settings",
+  "text.config.mcversionrenamer-config.category.versionTextSettings": "Version Text Settings",
+  "text.config.mcversionrenamer-config.option.versionTextSettings.versionText": "Version Text",
+  "text.config.mcversionrenamer-config.option.versionTextSettings.titleText": "Title Text",
+  "text.config.mcversionrenamer-config.option.versionTextSettings.f3Text": "F3 Text",
+  "text.config.mcversionrenamer-config.option.shouldPopenVersionModal": "Should Open Version Modal",
+  "text.config.mcversionrenamer-config.option.useLegacyButton": "Use Legacy Button"
+}

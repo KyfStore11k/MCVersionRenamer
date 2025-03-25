@@ -1,0 +1,160 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.1.20-RC2'
+    id('fabric-loom') version '1.10-SNAPSHOT'
+    id('maven-publish')
+    id('checkstyle')
+}
+
+def generatedVersionDir = layout.buildDirectory.dir("generated-version")
+
+version(project.mod_version)
+group(project.maven_group)
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    maven {
+        name = "CottonMC"
+        url = "https://server.bbkr.space/artifactory/libs-release"
+    }
+
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
+
+    maven { url 'https://maven.wispforest.io/releases/' }
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+fabricApi {
+    configureDataGeneration {
+        client = true
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation include("net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}")
+
+    modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
+
+    modCompileOnly("flatdir:betterf3_fabric_MC_1.21.4:13.0.0")
+    modCompileOnly("flatdir:fancymenu_fabric_MC_1.21.4:3.4.6")
+    modCompileOnly("flatdir:konkrete_fabric_MC_1.21.4:1.9.9")
+
+    modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+    include "io.wispforest:owo-sentinel:${project.owo_version}"
+    annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
+    modImplementation include("io.wispforest:owo-lib:${project.owo_version}")
+
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
+
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation include("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+    // https://mvnrepository.com/artifact/com.squareup.okio/okio
+    implementation include("com.squareup.okio:okio:3.10.2")
+    // https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle
+    implementation include("com.puppycrawl.tools:checkstyle:10.21.4")
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.20-RC2'
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    include(compileOnly(annotationProcessor("org.projectlombok:lombok:1.18.36")))
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    include(testCompileOnly(testAnnotationProcessor("org.projectlombok:lombok:1.18.36")))
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": inputs.properties.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+tasks.register('generateVersionProperties') {
+    doLast {
+        def propertiesFile = generatedVersionDir.get().file("mcversionrenamer.version.properties").asFile
+        propertiesFile.parentFile.mkdirs()
+
+        def properties = new Properties()
+        properties.setProperty("version", project.version.toString())
+
+        propertiesFile.withWriter { writer ->
+            properties.store(writer, null)
+        }
+    }
+}
+
+tasks.named("processResources") {
+    dependsOn generateVersionProperties
+}
+
+processResources {
+    filesMatching(['**/*.json']) {
+        expand([version: version])
+    }
+}
+
+checkstyle {
+    toolVersion = '10.21.4'
+    config = resources.text.fromFile('config/checkstyle/checkstyle.xml')
+    maxErrors = 0
+}
+
+java {
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+sourceSets {
+    main {
+        resources.srcDir(generatedVersionDir)
+    }
+}
+
+jar {
+    inputs.property "archivesName", project.base.archivesName
+
+    from("LICENSE") {
+        rename { "${it}_${inputs.properties.archivesName}"}
+    }
+}
+
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = project.archives_base_name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
+}

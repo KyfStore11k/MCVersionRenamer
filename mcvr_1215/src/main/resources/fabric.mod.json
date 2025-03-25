@@ -1,0 +1,61 @@
+{
+	"schemaVersion": 1,
+	"id": "mcversionrenamer",
+	"version": "${version}",
+	"name": "MCVersionRenamer",
+	"description": "MCVersionRenamer is a fun tool to rename your Minecraft version to whatever you want!",
+	"authors": [
+		"KyfStore11k"
+	],
+	"contact": {
+		"homepage": "https://kyfstore.com",
+		"sources": "https://github.com/KyfStore11k/MCVersionRenamer",
+		"issues": "https://github.com/KyfStore11k/MCVersionRenamer/issues",
+		"email": "support@kyfstore.com"
+	},
+	"license": "MIT",
+	"icon": "assets/mcversionrenamer/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			{
+				"adapter": "kotlin",
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamer"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"adapter": "kotlin",
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerDataGenerator"
+			}
+		],
+		"client": [
+			{
+				"adapter": "kotlin",
+				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerClient"
+			}
+		]
+	},
+	"mixins": [
+		"mcversionrenamer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"fabric-language-kotlin": ">=1.10.8+kotlin.1.9.0",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"recommends": {
+		"modmenu": ">=13.0.2",
+		"betterf3": ">=13.0.0",
+		"clean-f3": ">=0.4.9",
+		"fancymenu": ">=2.3.6"
+	},
+	"suggests": {
+		"modmenu": ">=13.0.2",
+		"betterf3": ">=13.0.0",
+		"clean-f3": ">=0.4.9",
+		"fancymenu": ">=2.3.6"
+	}
+}
