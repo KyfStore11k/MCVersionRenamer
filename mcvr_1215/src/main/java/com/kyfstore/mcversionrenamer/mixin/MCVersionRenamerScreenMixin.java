@@ -1,6 +1,7 @@
 package com.kyfstore.mcversionrenamer.mixin;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
+import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerGui;
 import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerScreen;
@@ -32,7 +33,7 @@ public abstract class MCVersionRenamerScreenMixin extends Screen {
     @Inject(method = "addNormalWidgets", at = @At("RETURN"))
     public void addCustomButton(int y, int spacingY, CallbackInfoReturnable<Integer> cir) {
 
-        if (!MCVersionRenamer.CONFIG.useLegacyButton()) {
+        if (!MCVersionRenamerConfig.useLegacyButton) {
             int buttonWidth = 50;
             int buttonHeight = 20;
             int buttonX = this.width / 2 - 100 + 205;

@@ -27,6 +27,11 @@ repositories {
 
     maven { url 'https://maven.wispforest.io/releases/' }
 
+    maven {
+        name 'Xander Maven'
+        url 'https://maven.isxander.dev/releases'
+    }
+
     flatDir {
         dirs 'libs'
     }
@@ -52,12 +57,15 @@ dependencies {
     modCompileOnly("flatdir:fancymenu_fabric_MC_1.21.4:3.4.6")
     modCompileOnly("flatdir:konkrete_fabric_MC_1.21.4:1.9.9")
 
-    modImplementation "io.wispforest:owo-lib:${project.owo_version}"
-    include "io.wispforest:owo-sentinel:${project.owo_version}"
-    annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
-    modImplementation include("io.wispforest:owo-lib:${project.owo_version}")
+    // modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+    // include "io.wispforest:owo-sentinel:${project.owo_version}"
+    // annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
+    // modImplementation include("io.wispforest:owo-lib:${project.owo_version}")
 
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
+
+    modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation include("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")

@@ -2,6 +2,7 @@ package com.kyfstore.mcversionrenamer.gui;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
+import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
@@ -29,12 +30,12 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
         WButton button = new WButton(Text.literal("Set Text"));
         button.setIcon(new ItemIcon(new ItemStack(Items.LIME_WOOL)));
         button.setOnClick(() -> {
-            MCVersionRenamer.CONFIG.versionTextSettings.titleText(textField.getText());
-            MCVersionRenamer.CONFIG.versionTextSettings.versionText(textField.getText());
-            MCVersionRenamer.CONFIG.versionTextSettings.f3Text(textField.getText());
-            MCVersionRenamerClient.setClientWindowName(MCVersionRenamer.CONFIG.versionTextSettings.titleText());
-            MCVersionPublicData.versionText = MCVersionRenamer.CONFIG.versionTextSettings.versionText();
-            MCVersionPublicData.f3Text = MCVersionRenamer.CONFIG.versionTextSettings.f3Text();
+            MCVersionRenamerConfig.titleText = textField.getText();
+            MCVersionRenamerConfig.versionText = textField.getText();
+            MCVersionRenamerConfig.f3Text = textField.getText();
+            MCVersionRenamerClient.setClientWindowName(MCVersionRenamerConfig.titleText);
+            MCVersionPublicData.versionText = MCVersionRenamerConfig.versionText;
+            MCVersionPublicData.f3Text = MCVersionRenamerConfig.f3Text;
             MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });
@@ -46,9 +47,9 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
         WButton defaultButton = new WButton(Text.literal("Default"));
         defaultButton.setIcon(new ItemIcon(new ItemStack(Items.WHITE_WOOL)));
         defaultButton.setOnClick(() -> {
-            MCVersionRenamer.CONFIG.versionTextSettings.versionText(MCVersionPublicData.defaultVersionText);
-            MCVersionRenamer.CONFIG.versionTextSettings.titleText(MCVersionPublicData.defaultTitleText);
-            MCVersionRenamer.CONFIG.versionTextSettings.f3Text(MCVersionPublicData.defaultF3Text);
+            MCVersionRenamerConfig.versionText = MCVersionPublicData.defaultVersionText;
+            MCVersionRenamerConfig.titleText = MCVersionPublicData.defaultTitleText;
+            MCVersionRenamerConfig.f3Text = MCVersionPublicData.defaultF3Text;
             MCVersionRenamerClient.setClientWindowName(MCVersionPublicData.defaultTitleText);
             MCVersionPublicData.titleText = MCVersionPublicData.defaultTitleText;
             MCVersionPublicData.versionText = MCVersionPublicData.defaultVersionText;

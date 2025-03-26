@@ -1,5 +1,6 @@
 package com.kyfstore.mcversionrenamer;
 
+import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.event.KeyInputHandler;
 import com.kyfstore.mcversionrenamer.version.VersionCheckerApi;
@@ -31,16 +32,17 @@ public class MCVersionRenamerClient implements ClientModInitializer {
         versionChecker.onEnable(this);
 
         ScreenEvents.AFTER_INIT.register((minecraftClient, screen, i, i1) -> {
-            if (!MCVersionPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamer.CONFIG.versionTextSettings.titleText());
+            if (!MCVersionPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamerConfig.titleText);
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             publicClient = client;
-            MCVersionPublicData.versionText = MCVersionRenamer.CONFIG.versionTextSettings.versionText();
-            MCVersionPublicData.titleText = MCVersionRenamer.CONFIG.versionTextSettings.titleText();
-            MCVersionPublicData.f3Text = MCVersionRenamer.CONFIG.versionTextSettings.f3Text();
+            MCVersionPublicData.versionText = MCVersionRenamerConfig.versionText;
+            MCVersionPublicData.titleText = MCVersionRenamerConfig.titleText;
+            MCVersionPublicData.f3Text = MCVersionRenamerConfig.f3Text;
             if (client != null && client.getWindow() != null) {
-                client.getWindow().setTitle(versionClass.getName());
+                String title = (versionClass != null && versionClass.getName() != null) ? versionClass.getName() : "Minecraft*";
+                client.getWindow().setTitle(title);
                 if (client.currentScreen instanceof TitleScreen && !hasCheckedVersion) {
                     hasCheckedVersion = true;
                     versionChecker.checkVersion(client);

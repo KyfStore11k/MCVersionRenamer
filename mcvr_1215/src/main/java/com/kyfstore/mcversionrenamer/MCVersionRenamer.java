@@ -1,7 +1,8 @@
 package com.kyfstore.mcversionrenamer;
 
 import com.kyfstore.mcversionrenamer.customlibs.betterf3.VersionTextChangerModule;
-import com.kyfstore.mcversionrenamer.customlibs.owolib.MCVersionRenamerConfig;
+// import com.kyfstore.mcversionrenamer.customlibs.owolib.MCVersionRenamerConfig;
+import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control.PluginManager;
 import net.fabricmc.api.ModInitializer;
@@ -13,7 +14,7 @@ public class MCVersionRenamer implements ModInitializer {
     public static final String MOD_ID = "mcversionrenamer";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static final MCVersionRenamerConfig CONFIG = MCVersionRenamerConfig.createAndLoad();
+    // public static final MCVersionRenamerConfig CONFIG = MCVersionRenamerConfig.createAndLoad();
 
     @Override
     public void onInitialize() {
@@ -23,6 +24,8 @@ public class MCVersionRenamer implements ModInitializer {
     }
 
     private void setupDefaultInit() {
+        MCVersionRenamerConfig.HANDLER.save();
+        MCVersionRenamerConfig.HANDLER.load();
     }
 
     private void setupModHooks() {
