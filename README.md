@@ -26,7 +26,7 @@ MCVersionRenamer also recommends a few dependencies:
 
 ### BetterF3:
 
-(*For BetterF3, you will **HAVE** to install Mod Menu!*) Begin by opening the `Mods` tab, and edit the BetterF3 config settings. Select `Left Modules` and delete the `Minecraft Module`. Next press `Add New Module` and add the `MCVersionRenamer Custom Version Text` module. If it appears at the bottom, scroll down, and press the up arrow until it reaches the top of the list. Finally, save the config settings and exit. When you play Minecraft now, it should be updated to the MCVersionRenamer custom version text that you set.
+Begin by opening the `Mods` tab (or by clicking the `MCVR` button and selecting `Open Config`), and edit the BetterF3 config settings. Select `Left Modules` and delete the `Minecraft Module`. Next press `Add New Module` and add the `MCVersionRenamer Custom Version Text` module. If it appears at the bottom, scroll down, and press the up arrow until it reaches the top of the list. Finally, save the config settings and exit. When you play Minecraft now, it should be updated to the MCVersionRenamer custom version text that you set.
 
 ### FancyMenu:
 

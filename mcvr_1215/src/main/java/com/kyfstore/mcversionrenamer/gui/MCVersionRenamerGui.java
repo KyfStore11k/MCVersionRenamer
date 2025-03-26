@@ -58,10 +58,17 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });
 
+        WButton openConfigButton = new WButton(Text.literal("Open Config"));
+        openConfigButton.setOnClick(() -> {
+           MinecraftClient.getInstance().setScreen(MCVersionRenamerConfig.createConfigScreen(MinecraftClient.getInstance().currentScreen));
+        });
+
         root.add(textField, 3, 2, 11, 3);
         root.add(button, 0, 5, 5, 1);
         root.add(closeButton, 12, 5, 5, 1);
         root.add(defaultButton, 6, 5, 5, 1);
+
+        root.add(openConfigButton, 0, 0, 5, 1);
 
         root.validate(this);
     }

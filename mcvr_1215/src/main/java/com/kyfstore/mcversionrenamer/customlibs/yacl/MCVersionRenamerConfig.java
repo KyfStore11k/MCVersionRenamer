@@ -12,6 +12,7 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -30,9 +31,8 @@ public class MCVersionRenamerConfig implements ModMenuApi {
     @SerialEntry public static Boolean shouldPopenVersionModal = true;
     @SerialEntry public static Boolean useLegacyButton = false;
 
-    @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parentScreen -> YetAnotherConfigLib.createBuilder()
+    public static Screen createConfigScreen(Screen parentScreen) {
+        return YetAnotherConfigLib.createBuilder()
                 .title(Text.literal("MCVersionRenamer Config Screen"))
                 .category(ConfigCategory.createBuilder()
                         .name(Text.literal("General Settings"))
@@ -43,19 +43,19 @@ public class MCVersionRenamerConfig implements ModMenuApi {
                                 .option(Option.<String>createBuilder()
                                         .name(Text.literal("Version Text"))
                                         .description(OptionDescription.of(Text.literal("The Version Text Located at the Bottom Right of the Title Screen (which also appears elsewhere)")))
-                                        .binding(MCVersionPublicData.defaultVersionText, () -> this.versionText, newVal -> this.versionText = newVal)
+                                        .binding(MCVersionPublicData.defaultVersionText, () -> versionText, newVal -> versionText = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .option(Option.<String>createBuilder()
                                         .name(Text.literal("F3 Text"))
                                         .description(OptionDescription.of(Text.literal("The F3 text found in the default F3 menu (and BetterF3)")))
-                                        .binding(MCVersionPublicData.defaultF3Text, () -> this.f3Text, newVal -> this.f3Text = newVal)
+                                        .binding(MCVersionPublicData.defaultF3Text, () -> f3Text, newVal -> f3Text = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .option(Option.<String>createBuilder()
                                         .name(Text.literal("Title Text"))
                                         .description(OptionDescription.of(Text.literal("The title text of the current open Minecraft window")))
-                                        .binding(MCVersionPublicData.defaultTitleText, () -> this.titleText, newVal -> this.titleText = newVal)
+                                        .binding(MCVersionPublicData.defaultTitleText, () -> titleText, newVal -> titleText = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .build())
@@ -65,18 +65,23 @@ public class MCVersionRenamerConfig implements ModMenuApi {
                                 .option(Option.<Boolean>createBuilder()
                                         .name(Text.literal("Should Open Version Checking Modal?"))
                                         .description(OptionDescription.of(Text.literal("If you should have the startup MCVersionRenamer version modal open?")))
-                                        .binding(true, () -> this.shouldPopenVersionModal, newVal -> this.shouldPopenVersionModal = newVal)
+                                        .binding(true, () -> shouldPopenVersionModal, newVal -> shouldPopenVersionModal = newVal)
                                         .controller(TickBoxControllerBuilder::create)
                                         .build())
                                 .option(Option.<Boolean>createBuilder()
                                         .name(Text.literal("Use Legacy Button?"))
                                         .description(OptionDescription.of(Text.literal("If you should use the old legacy button location/size?")))
-                                        .binding(false, () -> this.useLegacyButton, newVal -> this.useLegacyButton = newVal)
+                                        .binding(false, () -> useLegacyButton, newVal -> useLegacyButton = newVal)
                                         .controller(TickBoxControllerBuilder::create)
                                         .build())
                                 .build())
                         .build())
                 .build()
                 .generateScreen(parentScreen);
+    }
+
+    @Override
+    public ConfigScreenFactory<?> getModConfigScreenFactory() {
+        return MCVersionRenamerConfig::createConfigScreen;
     }
 }

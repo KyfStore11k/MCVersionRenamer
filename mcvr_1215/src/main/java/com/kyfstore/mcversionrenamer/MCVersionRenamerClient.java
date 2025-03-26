@@ -9,6 +9,7 @@ import com.kyfstore.mcversionrenamer.rewrites.MCVersionRenamerMinecraftGameVersi
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.MinecraftClient;
@@ -48,6 +49,10 @@ public class MCVersionRenamerClient implements ClientModInitializer {
                     versionChecker.checkVersion(client);
                 }
             }
+        });
+
+        ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+            MCVersionRenamerConfig.HANDLER.save();
         });
     }
 
