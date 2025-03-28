@@ -1,9 +1,11 @@
 package com.kyfstore.mcversionrenamer.data;
 
+import net.minecraft.SharedConstants;
+
 public class MCVersionPublicData {
 
-    public static String defaultVersionText = "Minecraft* 1.21.4/Fabric (Modded)";
-    public static String defaultTitleText = "Minecraft* 1.21.4";
+    public static String defaultVersionText = String.format("Minecraft* %s/Fabric (Modded)", SharedConstants.VERSION_NAME);
+    public static String defaultTitleText = String.format("Minecraft* %s", SharedConstants.VERSION_NAME);
     public static String defaultF3Text = defaultVersionText;
 
 

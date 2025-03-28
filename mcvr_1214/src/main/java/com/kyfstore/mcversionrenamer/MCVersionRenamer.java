@@ -1,6 +1,5 @@
 package com.kyfstore.mcversionrenamer;
 
-import com.kyfstore.mcversionrenamer.customlibs.betterf3.VersionTextChangerModule;
 import com.kyfstore.mcversionrenamer.customlibs.owolib.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control.PluginManager;
@@ -28,8 +27,6 @@ public class MCVersionRenamer implements ModInitializer {
     private void setupModHooks() {
         if (FabricLoader.getInstance().isModLoaded("betterf3")) {
             LOGGER.info("BetterF3 loaded! Initiating BetterF3 hooks for MCVersionRenamer...");
-
-            new VersionTextChangerModule().init();
         } else {
             LOGGER.info("Can't find mod; BetterF3; skipped BetterF3 related hooks...");
         }

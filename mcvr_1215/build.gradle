@@ -25,12 +25,13 @@ repositories {
         url = "https://maven.terraformersmc.com/"
     }
 
-    maven { url 'https://maven.wispforest.io/releases/' }
-
     maven {
         name 'Xander Maven'
         url 'https://maven.isxander.dev/releases'
     }
+
+    maven { url 'https://maven.wispforest.io/releases/' }
+    maven { url "https://api.modrinth.com/maven" }
 
     flatDir {
         dirs 'libs'
@@ -53,10 +54,6 @@ dependencies {
 
     modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 
-    modCompileOnly("flatdir:betterf3_fabric_MC_1.21.4:13.0.0")
-    modCompileOnly("flatdir:fancymenu_fabric_MC_1.21.4:3.4.6")
-    modCompileOnly("flatdir:konkrete_fabric_MC_1.21.4:1.9.9")
-
     // modImplementation "io.wispforest:owo-lib:${project.owo_version}"
     // include "io.wispforest:owo-sentinel:${project.owo_version}"
     // annotationProcessor modImplementation("io.wispforest:owo-lib:${project.owo_version}")
@@ -65,7 +62,14 @@ dependencies {
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
 
     modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
-    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    // modImplementation("maven.modrinth:modmenu-badges-lib:${project.modmenu_badges_lib_version}")
+
+    modImplementation(files("libs/modmenu-badges-lib_fabric_MC_1.21.4-2025.3.28.jar"))
+
+    modCompileOnly("maven.modrinth:betterf3:${project.betterf3_version}")
+    modCompileOnly("maven.modrinth:fancymenu:${project.fancymenu_version}")
+    modCompileOnly("maven.modrinth:konkrete:${project.konkrete_version}")
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation include("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")

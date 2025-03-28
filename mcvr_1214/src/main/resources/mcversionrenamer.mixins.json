@@ -8,7 +8,8 @@
 	"client": [
 		"TitleScreenMixin",
 		"DebugScreenMixin",
-		"MCVersionRenamerScreenMixin"
+		"MCVersionRenamerScreenMixin",
+		"MinecraftModuleMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

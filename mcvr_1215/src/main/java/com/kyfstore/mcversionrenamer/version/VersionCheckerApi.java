@@ -3,13 +3,13 @@ package com.kyfstore.mcversionrenamer.version;
 import com.google.gson.JsonParser;
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
+import com.kyfstore.mcversionrenamer.customlibs.async.logger.AsyncLogger;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerGui;
 import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerScreen;
 import net.minecraft.client.MinecraftClient;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import org.slf4j.Logger;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -21,7 +21,7 @@ public class VersionCheckerApi {
 
     private Properties versionProperties = new Properties();
 
-    private Logger logger;
+    private AsyncLogger logger;
 
     public void onEnable(MCVersionRenamerClient instance) {
         this.instance = instance;

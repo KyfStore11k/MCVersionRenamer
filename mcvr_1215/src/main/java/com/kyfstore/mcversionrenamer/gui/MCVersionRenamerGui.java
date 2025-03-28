@@ -36,7 +36,7 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
             MCVersionRenamerClient.setClientWindowName(MCVersionRenamerConfig.titleText);
             MCVersionPublicData.versionText = MCVersionRenamerConfig.versionText;
             MCVersionPublicData.f3Text = MCVersionRenamerConfig.f3Text;
-            MinecraftClient.getInstance().reloadResources();
+            // MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });
 
@@ -54,7 +54,7 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
             MCVersionPublicData.titleText = MCVersionPublicData.defaultTitleText;
             MCVersionPublicData.versionText = MCVersionPublicData.defaultVersionText;
             MCVersionPublicData.f3Text = MCVersionPublicData.defaultF3Text;
-            MinecraftClient.getInstance().reloadResources();
+            // MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });
 

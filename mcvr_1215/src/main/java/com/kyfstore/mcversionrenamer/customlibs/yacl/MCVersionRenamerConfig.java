@@ -2,9 +2,6 @@ package com.kyfstore.mcversionrenamer.customlibs.yacl;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
-import com.nimbusds.jose.shaded.gson.GsonBuilder;
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
@@ -16,7 +13,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class MCVersionRenamerConfig implements ModMenuApi {
+public class MCVersionRenamerConfig {
     public static ConfigClassHandler<MCVersionRenamerConfig> HANDLER = ConfigClassHandler.createBuilder(MCVersionRenamerConfig.class)
             .id(Identifier.of(MCVersionRenamer.MOD_ID, "mcversionrenamer_config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
@@ -78,10 +75,5 @@ public class MCVersionRenamerConfig implements ModMenuApi {
                         .build())
                 .build()
                 .generateScreen(parentScreen);
-    }
-
-    @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return MCVersionRenamerConfig::createConfigScreen;
     }
 }

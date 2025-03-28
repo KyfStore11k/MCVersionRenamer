@@ -1,10 +1,13 @@
 package com.kyfstore.mcversionrenamer.mixin;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerGui;
 import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerScreen;
+import com.terraformersmc.modmenu.ModMenu;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -12,7 +15,10 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.client.gui.screen.Screen;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,9 +26,13 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 @Mixin(TitleScreen.class)
 @Environment(EnvType.CLIENT)
 public abstract class MCVersionRenamerScreenMixin extends Screen {
+    @Shadow @Final private static Logger LOGGER;
     @Unique
     private ButtonWidget customButton;
 
@@ -45,8 +55,17 @@ public abstract class MCVersionRenamerScreenMixin extends Screen {
                     }
             ).dimensions(buttonX, y, buttonWidth, buttonHeight).build();
 
-            if (MCVersionPublicData.modMenuIsLoaded) customButton.setPosition(buttonX, y - 72);
-            else if (!MCVersionPublicData.modMenuIsLoaded) customButton.setPosition(buttonX, y - 48);
+            if (MCVersionPublicData.modMenuIsLoaded) {
+                switch (getModsButtonStyle()) {
+                    case "classic":
+                        customButton.setPosition(buttonX, y - 72);
+                        break;
+                    default:
+                        customButton.setPosition(buttonX, y - 48);
+                        break;
+                }
+            }
+            else customButton.setPosition(buttonX, y - 48);
 
             customButton.visible = MCVersionPublicData.customButtonIsVisible;
 
@@ -78,5 +97,26 @@ public abstract class MCVersionRenamerScreenMixin extends Screen {
     @ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
     private String render(String value) {
         return MCVersionPublicData.versionText;
+    }
+
+    @Unique
+    private static String getModsButtonStyle() {
+        try {
+            Path configPath = MinecraftClient.getInstance().runDirectory.toPath()
+                    .resolve("config/modmenu.json");
+
+            if (Files.exists(configPath)) {
+                String content = Files.readString(configPath);
+                JsonObject json = JsonParser.parseString(content).getAsJsonObject();
+
+                if (json.has("mods_button_style")) {
+                    return json.get("mods_button_style").getAsString();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "classic";
     }
 }
