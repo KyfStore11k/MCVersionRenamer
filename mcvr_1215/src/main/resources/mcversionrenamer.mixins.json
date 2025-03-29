@@ -1,16 +1,18 @@
 {
-	"required": true,
-	"package": "com.kyfstore.mcversionrenamer.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"FancyMenuMixin"
-	],
-	"client": [
-		"TitleScreenMixin",
-		"DebugScreenMixin",
-		"MCVersionRenamerScreenMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "com.kyfstore.mcversionrenamer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FancyMenuMixin",
+    "MinecraftModuleMixin"
+  ],
+  "client": [
+    "DebugScreenMixin",
+    "MCVersionRenamerScreenMixin",
+    "TitleScreenMixin",
+    "MinecraftModuleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

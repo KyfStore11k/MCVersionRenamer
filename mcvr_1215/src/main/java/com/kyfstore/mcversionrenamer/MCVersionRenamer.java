@@ -27,7 +27,7 @@ public class MCVersionRenamer implements ModInitializer {
         if (FabricLoader.getInstance().isModLoaded("betterf3")) {
             LOGGER.info("BetterF3 loaded! Initiating BetterF3 hooks for MCVersionRenamer...");
         } else {
-            LOGGER.info("Can't find mod; BetterF3; skipped BetterF3 related hooks...");
+            LOGGER.info("BetterF3 not found, skipping BetterF3 related hooks...");
         }
         if (FabricLoader.getInstance().isModLoaded("fancymenu")) {
             MCVersionPublicData.fancyMenuIsLoaded = true;

@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.libapi.core.plugin.api.logger
+package com.kyfstore.mcversionrenamer.plugin.api.logger
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer
 import com.kyfstore.mcversionrenamer.customlibs.async.logger.AsyncLogger
