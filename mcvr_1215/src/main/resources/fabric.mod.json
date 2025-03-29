@@ -45,16 +45,16 @@
 	"depends": {
 		"fabricloader": ">=0.16.10",
 		"fabric-language-kotlin": ">=1.10.8+kotlin.1.9.0",
-		"minecraft": "~1.21.4",
+		"minecraft": "~1.21.5",
 		"java": ">=21",
 		"fabric-api": "*",
-		"yet_another_config_lib_v3": ">=3.6.6+1.21.5-fabric"
+		"yet_another_config_lib_v3": "*"
 	},
 	"recommends": {
-		"modmenu": ">=13.0.2",
-		"betterf3": ">=13.0.0",
-		"clean-f3": ">=0.4.9",
-		"fancymenu": ">=2.3.6",
+		"modmenu": "*",
+		"betterf3": "*",
+		"clean-f3": "*",
+		"fancymenu": "*",
 		"modmenu-badges-lib": "*"
 	},
 	"custom": {
