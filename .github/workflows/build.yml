@@ -31,8 +31,18 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4.1.0
 
-      - name: Grant execute permission to Gradle Wrapper
+      - name: Grant execute permission to Root Gradle Wrapper
         run: chmod +x gradlew
+
+      - name: Grant execute permission to 1_21_4 Gradle Wrapper
+        run: |
+          cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1214"
+          chmod +x gradlew
+
+      - name: Grant execute permission to 1_21_5 Gradle Wrapper
+        run: |
+          cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215"
+          chmod +x gradlew
 
       - name: Build root
         run: ./gradlew build
