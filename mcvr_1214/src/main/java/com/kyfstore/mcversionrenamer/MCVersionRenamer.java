@@ -2,7 +2,7 @@ package com.kyfstore.mcversionrenamer;
 
 import com.kyfstore.mcversionrenamer.customlibs.owolib.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
-import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control.PluginManager;
+import com.kyfstore.mcversionrenamer.plugin.main.control.PluginManager;
 import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
