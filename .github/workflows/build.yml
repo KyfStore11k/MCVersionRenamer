@@ -40,14 +40,17 @@ jobs:
       - name: Upload Root Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
+          name: root
           path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/build/libs/**.jar
 
       - name: Upload 1_21_4 Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
+          name: 1_21_4
           path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1214/build/libs/**.jar
 
       - name: Upload 1_21_5 Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
+          name: 1_21_5
           path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215/build/libs/**.jar
