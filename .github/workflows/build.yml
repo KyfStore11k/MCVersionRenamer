@@ -37,6 +37,9 @@ jobs:
       - name: Run build
         run: ./gradlew build
 
+      - name: List all files and directories
+        run: find ${{ github.workspace }} -type f
+
       - name: Upload Root Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
