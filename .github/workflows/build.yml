@@ -34,29 +34,33 @@ jobs:
       - name: Grant execute permission to Gradle Wrapper
         run: chmod +x gradlew
 
-      - name: Run build
+      - name: Build root
         run: ./gradlew build
 
-      - name: List all files and directories
-        run: find ${{ github.workspace }} -type f
+      - name: Build 1_21_4
+        run: |
+          cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1214"
+          ./gradlew build
+
+      - name: Build 1_21_5
+        run: |
+          cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215"
+          ./gradlew build
 
       - name: Upload Root Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
           name: root
-          # path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/build/libs/**.jar
-          path: build/libs/*.jar
+          path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/build/libs/**.jar
 
       - name: Upload 1_21_4 Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
           name: 1_21_4
-          # path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1214/build/libs/**.jar
-          path: mcvr_1214/build/libs/*.jar
+          path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1214/build/libs/**.jar
 
       - name: Upload 1_21_5 Build Artifact
         uses: actions/upload-artifact@v4.4.0
         with:
           name: 1_21_5
-          # path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215/build/libs/**.jar
-          path: mcvr_1215/build/libs/*.jar
+          path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215/build/libs/**.jar
