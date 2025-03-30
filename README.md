@@ -32,8 +32,7 @@ it will overwrite MCVersionRenamer's custom version text
 (TitleScreen only).
 
 ## Working On (*Not Implemented*)
-- FancyMenu and Essential Mod Hooks for MCVersionRenamer!
-- 1.21.5 Support
+- A complete FancyMenu hook for MCVersionRenamer!
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
