@@ -3,7 +3,7 @@ package com.kyfstore.mcversionrenamer.version;
 import com.google.gson.JsonParser;
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
-import com.kyfstore.mcversionrenamer.customlibs.async.logger.AsyncLogger;
+import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerGui;
 import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerScreen;

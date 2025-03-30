@@ -1,7 +1,7 @@
 package com.kyfstore.mcversionrenamer.plugin.api.logger
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer
-import com.kyfstore.mcversionrenamer.customlibs.async.logger.AsyncLogger
+import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger
 
 class LoggerAPI {
     private lateinit var logger: AsyncLogger

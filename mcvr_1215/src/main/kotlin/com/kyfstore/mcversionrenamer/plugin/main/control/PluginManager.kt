@@ -1,8 +1,8 @@
-package com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control
+package com.kyfstore.mcversionrenamer.plugin.main.control
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer
-import com.kyfstore.mcversionrenamer.libapi.core.plugin.api.PluginObject
-import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.data.PublicPluginRegistry
+import com.kyfstore.mcversionrenamer.plugin.api.PluginObject
+import com.kyfstore.mcversionrenamer.plugin.main.data.PublicPluginRegistry
 
 class PluginManager {
 

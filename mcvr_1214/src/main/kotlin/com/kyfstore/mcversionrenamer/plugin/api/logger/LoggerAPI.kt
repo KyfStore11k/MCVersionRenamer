@@ -1,20 +1,19 @@
-package com.kyfstore.mcversionrenamer.libapi.core.plugin.api.logger
+package com.kyfstore.mcversionrenamer.plugin.api.logger
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger
 
 class LoggerAPI {
-    private lateinit var logger: Logger
+    private lateinit var logger: AsyncLogger
 
     var isInitialized: Boolean = false
 
     fun onEnable() {
         this.isInitialized = true
-        logger = LoggerFactory.getLogger(MCVersionRenamer::class.java)
+        logger = MCVersionRenamer.LOGGER;
     }
 
-    fun getLogger(): Logger {
+    fun getLogger(): AsyncLogger {
         return logger
     }
 }

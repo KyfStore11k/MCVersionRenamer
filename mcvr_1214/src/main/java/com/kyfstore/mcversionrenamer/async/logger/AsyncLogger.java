@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.customlibs.async.logger;
+package com.kyfstore.mcversionrenamer.async.logger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ public class AsyncLogger {
 
     public AsyncLogger(String name) {
         this.logger = LoggerFactory.getLogger(name);
-        this.logExecutor = Executors.newSingleThreadExecutor(new CustomThreadFactory("MCVersionRenamer"));
+        this.logExecutor = Executors.newSingleThreadExecutor(new CustomThreadFactory(name));
     }
 
     public void info(String message) {

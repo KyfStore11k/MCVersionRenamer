@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.libapi.core.plugin.api
+package com.kyfstore.mcversionrenamer.plugin.api
 
 abstract class PluginInitializer {
     var main: PluginMain? = null

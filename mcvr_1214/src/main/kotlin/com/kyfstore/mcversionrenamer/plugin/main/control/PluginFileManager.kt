@@ -1,9 +1,9 @@
-package com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control
+package com.kyfstore.mcversionrenamer.plugin.main.control
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer
-import com.kyfstore.mcversionrenamer.libapi.core.plugin.api.PluginInitializer
-import com.kyfstore.mcversionrenamer.libapi.core.plugin.api.PluginObject
-import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.data.PublicPluginRegistry
+import com.kyfstore.mcversionrenamer.plugin.api.PluginInitializer
+import com.kyfstore.mcversionrenamer.plugin.api.PluginObject
+import com.kyfstore.mcversionrenamer.plugin.main.data.PublicPluginRegistry
 import java.io.File
 import java.net.URLClassLoader
 import java.util.jar.Attributes

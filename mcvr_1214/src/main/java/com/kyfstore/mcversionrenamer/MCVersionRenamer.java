@@ -3,14 +3,13 @@ package com.kyfstore.mcversionrenamer;
 import com.kyfstore.mcversionrenamer.customlibs.owolib.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control.PluginManager;
+import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MCVersionRenamer implements ModInitializer {
     public static final String MOD_ID = "mcversionrenamer";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final AsyncLogger LOGGER = new AsyncLogger(MOD_ID);
 
     public static final MCVersionRenamerConfig CONFIG = MCVersionRenamerConfig.createAndLoad();
 

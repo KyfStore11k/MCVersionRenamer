@@ -1,6 +1,6 @@
 package com.kyfstore.mcversionrenamer;
 
-import com.kyfstore.mcversionrenamer.customlibs.async.logger.AsyncLogger;
+import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
 import com.kyfstore.mcversionrenamer.libapi.core.plugin.core.main.control.PluginManager;

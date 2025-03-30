@@ -26,6 +26,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -112,9 +113,11 @@ public abstract class MCVersionRenamerScreenMixin extends Screen {
                 if (json.has("mods_button_style")) {
                     return json.get("mods_button_style").getAsString();
                 }
+            } else {
+                throw new FileNotFoundException("ModMenu Config File Not Found!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            MCVersionRenamer.LOGGER.error(e.toString());
         }
 
         return "classic";
