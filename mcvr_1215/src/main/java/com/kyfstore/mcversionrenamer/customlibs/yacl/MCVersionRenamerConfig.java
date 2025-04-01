@@ -1,7 +1,7 @@
 package com.kyfstore.mcversionrenamer.customlibs.yacl;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
@@ -22,9 +22,9 @@ public class MCVersionRenamerConfig {
                     .build())
             .build();
 
-    @SerialEntry public static String versionText = MCVersionPublicData.versionText;
-    @SerialEntry public static String f3Text = MCVersionPublicData.f3Text;
-    @SerialEntry public static String titleText = MCVersionPublicData.titleText;
+    @SerialEntry public static String versionText = MCVersionRenamerPublicData.versionText;
+    @SerialEntry public static String f3Text = MCVersionRenamerPublicData.f3Text;
+    @SerialEntry public static String titleText = MCVersionRenamerPublicData.titleText;
     @SerialEntry public static Boolean shouldPopenVersionModal = true;
     @SerialEntry public static Boolean useLegacyButton = false;
     @SerialEntry public static Boolean buttonEnabled = true;
@@ -42,19 +42,19 @@ public class MCVersionRenamerConfig {
                                 .option(Option.<String>createBuilder()
                                         .name(Text.literal("Version Text"))
                                         .description(OptionDescription.of(Text.literal("The Version Text Located at the Bottom Right of the Title Screen (which also appears elsewhere)")))
-                                        .binding(MCVersionPublicData.defaultVersionText, () -> versionText, newVal -> versionText = newVal)
+                                        .binding(MCVersionRenamerPublicData.defaultVersionText, () -> versionText, newVal -> versionText = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .option(Option.<String>createBuilder()
                                         .name(Text.literal("F3 Text"))
                                         .description(OptionDescription.of(Text.literal("The F3 text found in the default F3 menu (and BetterF3)")))
-                                        .binding(MCVersionPublicData.defaultF3Text, () -> f3Text, newVal -> f3Text = newVal)
+                                        .binding(MCVersionRenamerPublicData.defaultF3Text, () -> f3Text, newVal -> f3Text = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .option(Option.<String>createBuilder()
                                         .name(Text.literal("Title Text"))
                                         .description(OptionDescription.of(Text.literal("The title text of the current open Minecraft window")))
-                                        .binding(MCVersionPublicData.defaultTitleText, () -> titleText, newVal -> titleText = newVal)
+                                        .binding(MCVersionRenamerPublicData.defaultTitleText, () -> titleText, newVal -> titleText = newVal)
                                         .controller(StringControllerBuilder::create)
                                         .build())
                                 .build())

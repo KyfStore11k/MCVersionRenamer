@@ -1,6 +1,6 @@
 package com.kyfstore.mcversionrenamer.mixin;
 
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import net.minecraft.client.gui.hud.DebugHud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,7 +15,7 @@ public class DebugScreenMixin {
     @Inject(method = "getLeftText", at = @At("RETURN"), cancellable = true)
     private void modifyLeftText(CallbackInfoReturnable<List<String>> info) {
         List<String> textList = info.getReturnValue();
-        textList.set(0, MCVersionPublicData.f3Text);
+        textList.set(0, MCVersionRenamerPublicData.f3Text);
         info.setReturnValue(textList);
     }
 }

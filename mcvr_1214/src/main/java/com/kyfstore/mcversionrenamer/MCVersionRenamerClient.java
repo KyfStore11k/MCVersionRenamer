@@ -1,7 +1,7 @@
 package com.kyfstore.mcversionrenamer;
 
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import com.kyfstore.mcversionrenamer.version.VersionCheckerApi;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -27,7 +27,7 @@ public class MCVersionRenamerClient implements ClientModInitializer {
         versionChecker.onEnable(this);
 
         ScreenEvents.AFTER_INIT.register((minecraftClient, screen, i, i1) -> {
-            if (!MCVersionPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamerConfig.titleText);
+            if (!MCVersionRenamerPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamerConfig.titleText);
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -38,14 +38,14 @@ public class MCVersionRenamerClient implements ClientModInitializer {
             }
 
             // Update MCVersionPublicData only if needed
-            if (MCVersionPublicData.versionText != MCVersionRenamerConfig.versionText) {
-                MCVersionPublicData.versionText = MCVersionRenamerConfig.versionText;
+            if (MCVersionRenamerPublicData.versionText != MCVersionRenamerConfig.versionText) {
+                MCVersionRenamerPublicData.versionText = MCVersionRenamerConfig.versionText;
             }
-            if (MCVersionPublicData.titleText != MCVersionRenamerConfig.titleText) {
-                MCVersionPublicData.titleText = MCVersionRenamerConfig.titleText;
+            if (MCVersionRenamerPublicData.titleText != MCVersionRenamerConfig.titleText) {
+                MCVersionRenamerPublicData.titleText = MCVersionRenamerConfig.titleText;
             }
-            if (MCVersionPublicData.f3Text != MCVersionRenamerConfig.f3Text) {
-                MCVersionPublicData.f3Text = MCVersionRenamerConfig.f3Text;
+            if (MCVersionRenamerPublicData.f3Text != MCVersionRenamerConfig.f3Text) {
+                MCVersionRenamerPublicData.f3Text = MCVersionRenamerConfig.f3Text;
             }
 
             // Set the client window title once, instead of every tick
@@ -54,7 +54,7 @@ public class MCVersionRenamerClient implements ClientModInitializer {
             }
 
             // Toggle button visibility only if it changes
-            if (MCVersionRenamerConfig.buttonEnabled != MCVersionPublicData.customButtonIsVisible) {
+            if (MCVersionRenamerConfig.buttonEnabled != MCVersionRenamerPublicData.customButtonIsVisible) {
                 setButtonVisibility(MCVersionRenamerConfig.buttonEnabled);
             }
         });
@@ -72,6 +72,6 @@ public class MCVersionRenamerClient implements ClientModInitializer {
     }
 
     public static void setButtonVisibility(boolean type) {
-        MCVersionPublicData.customButtonIsVisible = type;
+        MCVersionRenamerPublicData.customButtonIsVisible = type;
     }
 }

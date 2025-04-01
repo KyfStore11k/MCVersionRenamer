@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerGui;
 import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerScreen;
 import net.fabricmc.api.EnvType;
@@ -14,10 +14,7 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.client.gui.screen.Screen;
-import org.slf4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
@@ -49,26 +45,26 @@ public abstract class MCVersionRenamerScreenMixin extends Screen {
 
         if (!MCVersionRenamerConfig.useLegacyButton) {
             buttonX = this.width / 2 - 100 + 205;
-            buttonY = y - (MCVersionPublicData.modMenuIsLoaded && "classic".equals(getModsButtonStyle()) ? 72 : 48);
+            buttonY = y - (MCVersionRenamerPublicData.modMenuIsLoaded && "classic".equals(getModsButtonStyle()) ? 72 : 48);
             customButton = createButton(buttonX, buttonY, buttonWidth, buttonHeight, "MCVR");
         } else {
             customButton = createButton(5, 5, 150, 20, "Change MC Version");
         }
 
-        customButton.visible = MCVersionPublicData.customButtonIsVisible;
+        customButton.visible = MCVersionRenamerPublicData.customButtonIsVisible;
         this.addDrawableChild(customButton);
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void onTick(CallbackInfo ci) {
         if (customButton != null) {
-            customButton.visible = MCVersionPublicData.customButtonIsVisible;
+            customButton.visible = MCVersionRenamerPublicData.customButtonIsVisible;
         }
     }
 
     @ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
     private String render(String value) {
-        return MCVersionPublicData.versionText;
+        return MCVersionRenamerPublicData.versionText;
     }
 
     @Unique

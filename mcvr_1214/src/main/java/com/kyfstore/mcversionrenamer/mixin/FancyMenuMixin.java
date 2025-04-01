@@ -1,6 +1,6 @@
 package com.kyfstore.mcversionrenamer.mixin;
 
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import de.keksuccino.fancymenu.FancyMenu;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +12,6 @@ abstract class FancyMenuMixin {
 
     @Inject(method = "getMinecraftVersion()Ljava/lang/String;", at = @At("RETURN"), cancellable = true, remap = false)
     private static void setCustomVersionTextReturnValue(CallbackInfoReturnable<String> cir) {
-        cir.setReturnValue(MCVersionPublicData.versionText);
+        cir.setReturnValue(MCVersionRenamerPublicData.versionText);
     }
 }

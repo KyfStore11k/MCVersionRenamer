@@ -2,7 +2,7 @@ package com.kyfstore.mcversionrenamer.gui;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
@@ -33,8 +33,8 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
             MCVersionRenamerConfig.versionText = textField.getText();
             MCVersionRenamerConfig.f3Text = textField.getText();
             MCVersionRenamerClient.setClientWindowName(MCVersionRenamerConfig.titleText);
-            MCVersionPublicData.versionText = MCVersionRenamerConfig.versionText;
-            MCVersionPublicData.f3Text = MCVersionRenamerConfig.f3Text;
+            MCVersionRenamerPublicData.versionText = MCVersionRenamerConfig.versionText;
+            MCVersionRenamerPublicData.f3Text = MCVersionRenamerConfig.f3Text;
             // MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });
@@ -46,13 +46,13 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
         WButton defaultButton = new WButton(Text.literal("Default"));
         defaultButton.setIcon(new ItemIcon(new ItemStack(Items.WHITE_WOOL)));
         defaultButton.setOnClick(() -> {
-            MCVersionRenamerConfig.versionText = MCVersionPublicData.defaultVersionText;
-            MCVersionRenamerConfig.titleText = MCVersionPublicData.defaultTitleText;
-            MCVersionRenamerConfig.f3Text = MCVersionPublicData.defaultF3Text;
-            MCVersionRenamerClient.setClientWindowName(MCVersionPublicData.defaultTitleText);
-            MCVersionPublicData.titleText = MCVersionPublicData.defaultTitleText;
-            MCVersionPublicData.versionText = MCVersionPublicData.defaultVersionText;
-            MCVersionPublicData.f3Text = MCVersionPublicData.defaultF3Text;
+            MCVersionRenamerConfig.versionText = MCVersionRenamerPublicData.defaultVersionText;
+            MCVersionRenamerConfig.titleText = MCVersionRenamerPublicData.defaultTitleText;
+            MCVersionRenamerConfig.f3Text = MCVersionRenamerPublicData.defaultF3Text;
+            MCVersionRenamerClient.setClientWindowName(MCVersionRenamerPublicData.defaultTitleText);
+            MCVersionRenamerPublicData.titleText = MCVersionRenamerPublicData.defaultTitleText;
+            MCVersionRenamerPublicData.versionText = MCVersionRenamerPublicData.defaultVersionText;
+            MCVersionRenamerPublicData.f3Text = MCVersionRenamerPublicData.defaultF3Text;
             // MinecraftClient.getInstance().reloadResources();
             MinecraftClient.getInstance().setScreen(new TitleScreen());
         });

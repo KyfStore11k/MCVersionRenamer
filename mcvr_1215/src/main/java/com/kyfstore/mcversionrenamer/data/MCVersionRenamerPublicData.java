@@ -3,7 +3,7 @@ package com.kyfstore.mcversionrenamer.data;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.Version;
 
-public class MCVersionPublicData {
+public class MCVersionRenamerPublicData {
 
     public static String getMinecraftVersion() {
         Version version = FabricLoader.getInstance().getModContainer("minecraft")

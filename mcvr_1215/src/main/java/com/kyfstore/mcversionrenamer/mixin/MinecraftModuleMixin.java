@@ -1,6 +1,6 @@
 package com.kyfstore.mcversionrenamer.mixin;
 
-import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
+import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
 import me.cominixo.betterf3.modules.MinecraftModule;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ public class MinecraftModuleMixin {
 
     @Inject(method = "update", at = @At("HEAD"), cancellable = true, remap = false)
     public void modifyUpdate(MinecraftClient client, CallbackInfo ci) {
-        ((MinecraftModule) (Object) this).lines().get(0).value(MCVersionPublicData.versionText);
+        ((MinecraftModule) (Object) this).lines().get(0).value(MCVersionRenamerPublicData.versionText);
 
         ci.cancel();
     }
