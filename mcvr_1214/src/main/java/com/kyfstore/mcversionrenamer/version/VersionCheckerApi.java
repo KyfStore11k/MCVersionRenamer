@@ -3,9 +3,10 @@ package com.kyfstore.mcversionrenamer.version;
 import com.google.gson.JsonParser;
 import com.kyfstore.mcversionrenamer.MCVersionRenamer;
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
+import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger;
+import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerGui;
 import com.kyfstore.mcversionrenamer.gui.versionModal.VersionCheckerScreen;
-import com.kyfstore.mcversionrenamer.async.logger.AsyncLogger;
 import net.minecraft.client.MinecraftClient;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -67,11 +68,11 @@ public class VersionCheckerApi {
 
                 if (result != null) {
                     if (result) {
-                        if (MCVersionRenamer.CONFIG.shouldPopenVersionModal())
+                        if (MCVersionRenamerConfig.shouldPopenVersionModal)
                             minecraftClient.setScreenAndRender(new VersionCheckerScreen(
                                     new VersionCheckerGui(VersionCheckerGui.VersionPopupModalType.NEW_VERSION, latestVersion)));
                     } else {
-                        if (MCVersionRenamer.CONFIG.shouldPopenVersionModal())
+                        if (MCVersionRenamerConfig.shouldPopenVersionModal)
                             minecraftClient.setScreenAndRender(new VersionCheckerScreen(
                                     new VersionCheckerGui(VersionCheckerGui.VersionPopupModalType.OLD_VERSION, latestVersion)));
                     }

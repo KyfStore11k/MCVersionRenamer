@@ -1,9 +1,11 @@
 plugins {
 	id 'java'
 	id 'checkstyle'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.gradleup.shadow' version '9.0.0-beta6'
 }
 
-version(project.mod_version)
+version(project.version)
 group(project.maven_group)
 
 base {
@@ -11,11 +13,14 @@ base {
 }
 
 repositories {
-
+	mavenCentral()
 }
 
 dependencies {
+	implementation "org.slf4j:slf4j-api:$project.slf4j_version"
+	implementation "ch.qos.logback:logback-classic:$project.logback_version"
 
+	implementation "org.json:json:$project.orgjson_version"
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -35,8 +40,6 @@ checkstyle {
 }
 
 java {
-	withSourcesJar()
-
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
 
@@ -45,10 +48,23 @@ java {
 	}
 }
 
-jar {
+tasks.jar.enabled = false
+tasks.build.dependsOn(shadowJar)
+
+shadowJar {
+	archiveBaseName.set("MCVersionRenamerInstaller")
+	archiveClassifier.set("")
+	archiveVersion.set("")
+
 	inputs.property "archivesName", project.base.archivesName
 
 	from("LICENSE") {
 		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+
+	manifest {
+		attributes(
+				"Main-Class": "com.kyfstore.mcversionrenamer.application.Window"
+		)
 	}
 }

@@ -42,6 +42,7 @@ public class MCVersionRenamer implements ModInitializer {
     }
 
     private void setupPlugins() {
-        PluginManager.loadPlugins();
+        if (MCVersionRenamerConfig.pluginsEnabled) PluginManager.loadPlugins();
+        else LOGGER.info("Plugins disabled! (change this in config)");
     }
 }

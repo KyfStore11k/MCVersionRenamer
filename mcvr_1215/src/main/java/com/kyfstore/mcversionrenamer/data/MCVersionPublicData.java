@@ -1,8 +1,17 @@
 package com.kyfstore.mcversionrenamer.data;
 
-import net.minecraft.SharedConstants;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.Version;
 
 public class MCVersionPublicData {
+
+    public static String getMinecraftVersion() {
+        Version version = FabricLoader.getInstance().getModContainer("minecraft")
+                .orElseThrow()
+                .getMetadata()
+                .getVersion();
+        return version.getFriendlyString();
+    }
 
     public static String defaultVersionText = String.format("Minecraft* %s/Fabric (Modded)", SharedConstants.VERSION_NAME);
     public static String defaultTitleText = String.format("Minecraft* %s", SharedConstants.VERSION_NAME);

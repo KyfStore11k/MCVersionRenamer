@@ -17,5 +17,4 @@ public class MinecraftModuleMixin {
 
         ci.cancel();
     }
-
 }

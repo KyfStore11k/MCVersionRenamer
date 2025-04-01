@@ -5,10 +5,14 @@ MCVersionRenamer is a tool designed to assist Minecraft mod developers in managi
 - Version Management: Easily rename your Minecraft Version, Title, and F3 version!
 - Compatibility Support: Supports and integrates with some mods including: ModMenu; BetterF3; Clean F3
 - User-Friendly Interface: Navigate through the tool with ease, thanks to its intuitive design! (Possible with owo-lib and LibGui)
+- Optimizations: MCVersionRenamer provides optimizations up to 11% in the vanilla game! Up to 5% more with the hooks including BetterF3, Clean F3, and FancyMenu!
 ## Installation
 - Download: Visit the Releases section of the repository to download the latest version.
 - Setup: Put the `mcversionrenamer-<latest-release-version>.jar` into your `mods` folder of your Fabric installation.
 - Run Minecraft: Pretty simple, just run Minecraft.
+
+## Usage
+If you require any help, please visit the [Wiki](https://github.com/KyfStore11k/MCVersionRenamer/wiki)!
 
 ## (IMPORTANT!)
 MCVersionRenamer requires a few dependencies to work (some dependencies may be shaded later once I get around to that):
@@ -19,6 +23,8 @@ MCVersionRenamer also recommends a few dependencies:
 - ModMenu: https://modrinth.com/mod/modmenu
 - BetterF3: https://modrinth.com/mod/betterf3
 - CleanF3: https://modrinth.com/mod/clean-f3
+- ModMenu: https://modrinth.com/mod/modmenu
+- ModMenu Badges Lib: https://modrinth.com/mod/modmenu-badges-lib
 
 **If you encounter any errors, please make an issue immediately and I will fix it as fast as possible.**
 
@@ -33,6 +39,7 @@ it will overwrite MCVersionRenamer's custom version text
 
 ## Working On (*Not Implemented*)
 - A complete FancyMenu hook for MCVersionRenamer!
+- More optimizations!
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.

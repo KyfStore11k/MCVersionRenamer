@@ -9,10 +9,10 @@
   "client": [
     "DebugScreenMixin",
     "MCVersionRenamerScreenMixin",
-    "TitleScreenMixin",
     "MinecraftModuleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  },
+  "refmap": "mcversionrenamer-refmap.json"
 }

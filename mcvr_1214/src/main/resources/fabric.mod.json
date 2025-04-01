@@ -34,6 +34,9 @@
 				"adapter": "kotlin",
 				"value": "com.kyfstore.mcversionrenamer.MCVersionRenamerClient"
 			}
+		],
+		"modmenu": [
+			"com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerIntegration"
 		]
 	},
 	"mixins": [
@@ -50,12 +53,30 @@
 		"modmenu": ">=13.0.2",
 		"betterf3": ">=13.0.0",
 		"clean-f3": ">=0.4.9",
-		"fancymenu": ">=2.3.6"
+		"fancymenu": ">=2.3.6",
+		"modmenu-badges-lib": "*"
 	},
-	"suggests": {
-		"modmenu": ">=13.0.2",
-		"betterf3": ">=13.0.0",
-		"clean-f3": ">=0.4.9",
-		"fancymenu": ">=2.3.6"
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/YW3YKhJ9yk",
+				"modmenu.modrinth": "https://modrinth.com/mod/mcversionrenamer",
+				"modmenu.curseforge": "https://curseforge.com/minecraft/mc-mods/mcversionrenamer",
+				"modmenu.github_releases": "https://github.com/KyfStore11k/MCVersionRenamer/releases",
+				"modmenu.author_github": "https://github.com/KyfStore11k"
+			},
+			"update_checker": true
+		},
+		"mcb": [
+			{
+				"name": "Utility",
+				"labelColor": -16777216,
+				"fillColor": -13730510,
+				"outlineColor": -11751600
+			}
+		]
+	},
+	"conflicts": {
+		"minecraftversionrenamer": "*"
 	}
 }

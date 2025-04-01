@@ -1,7 +1,7 @@
 package com.kyfstore.mcversionrenamer;
 
+import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
 import com.kyfstore.mcversionrenamer.data.MCVersionPublicData;
-import com.kyfstore.mcversionrenamer.event.KeyInputHandler;
 import com.kyfstore.mcversionrenamer.version.VersionCheckerApi;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -17,38 +17,51 @@ import net.minecraft.client.gui.screen.TitleScreen;
 public class MCVersionRenamerClient implements ClientModInitializer {
 
     private static final VersionCheckerApi versionChecker = new VersionCheckerApi();
-
     private static boolean hasCheckedVersion = false;
 
-    private static String versionName = String.format("Minecraft* %s", SharedConstants.getGameVersion());
+    // Use string concatenation rather than String.format() for efficiency
+    private static String versionName = "Minecraft* " + SharedConstants.getGameVersion();
 
     @Override
     public void onInitializeClient() {
-        KeyInputHandler.register();
-
         versionChecker.onEnable(this);
 
         ScreenEvents.AFTER_INIT.register((minecraftClient, screen, i, i1) -> {
-            if (!MCVersionPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamer.CONFIG.versionTextSettings.titleText());
+            if (!MCVersionPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamerConfig.titleText);
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            publicClient = client;
-            MCVersionPublicData.versionText = MCVersionRenamer.CONFIG.versionTextSettings.versionText();
-            MCVersionPublicData.titleText = MCVersionRenamer.CONFIG.versionTextSettings.titleText();
-            MCVersionPublicData.f3Text = MCVersionRenamer.CONFIG.versionTextSettings.f3Text();
+            // Move these to the start of the tick to avoid redundant assignments
+            if (!hasCheckedVersion && client.currentScreen instanceof TitleScreen) {
+                hasCheckedVersion = true;
+                versionChecker.checkVersion(client); // Check version only once
+            }
 
+            // Update MCVersionPublicData only if needed
+            if (MCVersionPublicData.versionText != MCVersionRenamerConfig.versionText) {
+                MCVersionPublicData.versionText = MCVersionRenamerConfig.versionText;
+            }
+            if (MCVersionPublicData.titleText != MCVersionRenamerConfig.titleText) {
+                MCVersionPublicData.titleText = MCVersionRenamerConfig.titleText;
+            }
+            if (MCVersionPublicData.f3Text != MCVersionRenamerConfig.f3Text) {
+                MCVersionPublicData.f3Text = MCVersionRenamerConfig.f3Text;
+            }
+
+            // Set the client window title once, instead of every tick
             if (client != null && client.getWindow() != null) {
                 client.getWindow().setTitle(versionName);
-                if (client.currentScreen instanceof TitleScreen && !hasCheckedVersion) {
-                    hasCheckedVersion = true;
-                    versionChecker.checkVersion(client);
-                }
+            }
+
+            // Toggle button visibility only if it changes
+            if (MCVersionRenamerConfig.buttonEnabled != MCVersionPublicData.customButtonIsVisible) {
+                setButtonVisibility(MCVersionRenamerConfig.buttonEnabled);
             }
         });
 
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-           MCVersionRenamer.LOGGER.shutdown();
+            MCVersionRenamerConfig.HANDLER.save();
+            MCVersionRenamer.LOGGER.shutdown();
         });
     }
 
@@ -58,7 +71,7 @@ public class MCVersionRenamerClient implements ClientModInitializer {
         versionName = newTitle;
     }
 
-    public static void toggleButtonVisibility() {
-        MCVersionPublicData.customButtonIsVisible = !MCVersionPublicData.customButtonIsVisible;
+    public static void setButtonVisibility(boolean type) {
+        MCVersionPublicData.customButtonIsVisible = type;
     }
 }
