@@ -1,5 +1,5 @@
 # MCVersionRenamer
-MCVersionRenamer is a tool designed to assist Minecraft mod developers in managing and renaming Minecraft version files. It streamlines the process of updating and maintaining mod compatibility across different Minecraft versions.
+MCVersionRenamer (MCVR) is a powerful tool that lets you effortlessly rename your Minecraft version to anything you like! Beyond customization, MCVR enhances your vanilla Minecraft performance by approximately 16%. It also integrates seamlessly with BetterF3, Clean F3, and FancyMenu, as well as optimizes their performance by around 5% for an even SMOOTHER gameplay experience.
 
 ## Features
 - Version Management: Easily rename your Minecraft Version, Title, and F3 version!
