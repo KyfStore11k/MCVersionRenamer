@@ -54,9 +54,10 @@ dependencies {
 
     modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 
-    modCompileOnly("flatdir:betterf3_fabric_MC_1.21.4:13.0.0")
-    modCompileOnly("flatdir:fancymenu_fabric_MC_1.21.4:3.4.6")
-    modCompileOnly("flatdir:konkrete_fabric_MC_1.21.4:1.9.9")
+    modCompileOnly("maven.modrinth:betterf3:${project.betterf3_version}")
+    modCompileOnly("maven.modrinth:fancymenu:${project.fancymenu_version}")
+    modCompileOnly("maven.modrinth:konkrete:${project.konkrete_version}")
+    modCompileOnly("maven.modrinth:melody:${project.melody_version}")
 
     modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"

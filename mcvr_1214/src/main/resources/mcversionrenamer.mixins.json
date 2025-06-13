@@ -8,11 +8,13 @@
 	],
 	"client": [
 		"DebugScreenMixin",
-		"MCVersionRenamerScreenMixin",
-		"MinecraftModuleMixin"
+		"TitleScreenMixin",
+		"MinecraftModuleMixin",
+		"ClientBrandRetrieverMixin",
+		"LevelSummaryMixin"
 	],
 	"injectors": {
-		"defaultRequire": 1
+		"defaultRequire": 0
 	},
 	"refmap": "mcversionrenamer-refmap.json"
 }

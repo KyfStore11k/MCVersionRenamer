@@ -32,10 +32,6 @@ repositories {
 
     maven { url 'https://maven.wispforest.io/releases/' }
     maven { url "https://api.modrinth.com/maven" }
-
-    flatDir {
-        dirs 'libs'
-    }
 }
 
 fabricApi {
@@ -58,13 +54,12 @@ dependencies {
 
     modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-    // modImplementation("maven.modrinth:modmenu-badges-lib:${project.modmenu_badges_lib_version}")
-
-    modImplementation(files("libs/modmenu-badges-lib_fabric_MC_1.21.4-2025.3.28.jar"))
+    modImplementation("maven.modrinth:modmenu-badges-lib:${project.modmenu_badges_lib_version}")
 
     modCompileOnly("maven.modrinth:betterf3:${project.betterf3_version}")
     modCompileOnly("maven.modrinth:fancymenu:${project.fancymenu_version}")
     modCompileOnly("maven.modrinth:konkrete:${project.konkrete_version}")
+    modCompileOnly("maven.modrinth:melody:${project.melody_version}")
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation include("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")

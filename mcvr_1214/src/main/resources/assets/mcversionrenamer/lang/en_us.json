@@ -1,3 +1,17 @@
 ﻿{
-  "modmenu.author_github": "Author's GitHub"
+  "key.mcversionrenamer.guiToggle": "MCVersionRenamer GUI Toggle Key",
+  "category.mcversionrenamer.default.name": "MCVersionRenamer",
+
+  "modmenu.author_github": "Author's GitHub",
+
+  "mcversionrenamer.color.red": "Red",
+  "mcversionrenamer.color.orange": "Orange",
+  "mcversionrenamer.color.yellow": "Yellow",
+  "mcversionrenamer.color.green": "Green",
+  "mcversionrenamer.color.aqua": "Aqua",
+  "mcversionrenamer.color.blue": "Blue",
+  "mcversionrenamer.color.purple": "Purple",
+  "mcversionrenamer.color.white": "White",
+  "mcversionrenamer.color.gray": "Gray",
+  "mcversionrenamer.color.black": "Black"
 }

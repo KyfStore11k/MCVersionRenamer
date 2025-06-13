@@ -20,7 +20,7 @@ MCVersionRenamer requires a few dependencies to work (some dependencies may be s
 - MCVersionRenamer: https://github.com/KyfStore11k/MCVersionRenamer/releases (PS: This is the mod your viewing right now!)
 
 MCVersionRenamer also recommends a few dependencies:
-- ModMenu: https://modrinth.com/mod/modmenu
+- FancyMenu: https://modrinth.com/mod/fancymenu (HIGHLY NOT RECOMMENDED BUT COMPATIBLE! PLEASE VIEW THE EXTERNAL MOD NOTES FOR MORE DETAILS!)
 - BetterF3: https://modrinth.com/mod/betterf3
 - CleanF3: https://modrinth.com/mod/clean-f3
 - ModMenu: https://modrinth.com/mod/modmenu
@@ -32,13 +32,12 @@ MCVersionRenamer also recommends a few dependencies:
 
 ### FancyMenu:
 
-FancyMenu (as of now) currently has half-implemented functionality.
-I will be attempting to fix the scenario in which if `Current Screen Customization` is enabled,
-it will overwrite MCVersionRenamer's custom version text
-(TitleScreen only).
+FancyMenu (as of now) is currently in development and ***HIGHLY*** recommended ***NOT*** to be used with MCVR! There are many bugs and lots of things I will have to fix in the future!
+Even though MCVR is compatible with FancyMenu it is not completely implemented! USE AT YOUR OWN RISK!
 
 ## Working On (*Not Implemented*)
 - A complete FancyMenu hook for MCVersionRenamer!
+- Bug Hunting & Fixing!
 - More optimizations!
 
 ## License

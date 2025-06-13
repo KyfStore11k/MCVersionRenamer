@@ -96,7 +96,7 @@ class PluginFileManager {
                 }
 
             } catch (e: Exception) {
-                MCVersionRenamer.LOGGER.error("Error creating PluginObject from JAR file ${jarFile.name}: ${e.toString()}")
+                MCVersionRenamer.LOGGER.error("Error creating PluginObject from JAR file ${jarFile.name}: $e")
                 return null
             }
         }

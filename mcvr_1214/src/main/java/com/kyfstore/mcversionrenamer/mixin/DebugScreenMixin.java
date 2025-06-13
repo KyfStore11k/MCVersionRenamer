@@ -1,6 +1,6 @@
 package com.kyfstore.mcversionrenamer.mixin;
 
-import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
+import com.kyfstore.mcversionrenamer.util.MCVersionRenamerPublicData;
 import net.minecraft.client.gui.hud.DebugHud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

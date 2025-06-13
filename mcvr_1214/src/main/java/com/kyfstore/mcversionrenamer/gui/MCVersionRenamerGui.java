@@ -2,7 +2,7 @@ package com.kyfstore.mcversionrenamer.gui;
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamerClient;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
+import com.kyfstore.mcversionrenamer.util.MCVersionRenamerPublicData;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
@@ -10,6 +10,7 @@ import io.github.cottonmc.cotton.gui.widget.WTextField;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.github.cottonmc.cotton.gui.widget.icon.ItemIcon;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -17,7 +18,7 @@ import net.minecraft.text.Text;
 
 public class MCVersionRenamerGui extends LightweightGuiDescription {
 
-    public MCVersionRenamerGui() {
+    public MCVersionRenamerGui(Screen lastScreen) {
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
         root.setSize(300, 80);
@@ -35,13 +36,12 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
             MCVersionRenamerClient.setClientWindowName(MCVersionRenamerConfig.titleText);
             MCVersionRenamerPublicData.versionText = MCVersionRenamerConfig.versionText;
             MCVersionRenamerPublicData.f3Text = MCVersionRenamerConfig.f3Text;
-            // MinecraftClient.getInstance().reloadResources();
-            MinecraftClient.getInstance().setScreen(new TitleScreen());
+            MinecraftClient.getInstance().setScreen(lastScreen);
         });
 
         WButton closeButton = new WButton(Text.literal("Close"));
         closeButton.setIcon(new ItemIcon(new ItemStack(Items.RED_WOOL)));
-        closeButton.setOnClick(() -> MinecraftClient.getInstance().setScreen(new TitleScreen()));
+        closeButton.setOnClick(() -> MinecraftClient.getInstance().setScreen(lastScreen));
 
         WButton defaultButton = new WButton(Text.literal("Default"));
         defaultButton.setIcon(new ItemIcon(new ItemStack(Items.WHITE_WOOL)));
@@ -53,8 +53,7 @@ public class MCVersionRenamerGui extends LightweightGuiDescription {
             MCVersionRenamerPublicData.titleText = MCVersionRenamerPublicData.defaultTitleText;
             MCVersionRenamerPublicData.versionText = MCVersionRenamerPublicData.defaultVersionText;
             MCVersionRenamerPublicData.f3Text = MCVersionRenamerPublicData.defaultF3Text;
-            // MinecraftClient.getInstance().reloadResources();
-            MinecraftClient.getInstance().setScreen(new TitleScreen());
+            MinecraftClient.getInstance().setScreen(lastScreen);
         });
 
         WButton openConfigButton = new WButton(Text.literal("Open Config"));

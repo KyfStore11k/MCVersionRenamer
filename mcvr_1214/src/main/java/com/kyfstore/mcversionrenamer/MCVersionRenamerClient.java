@@ -1,17 +1,26 @@
 package com.kyfstore.mcversionrenamer;
 
+import com.kyfstore.mcversionrenamer.customlibs.fancymenu.FancyMenuUtil;
 import com.kyfstore.mcversionrenamer.customlibs.yacl.MCVersionRenamerConfig;
-import com.kyfstore.mcversionrenamer.data.MCVersionRenamerPublicData;
+import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerGui;
+import com.kyfstore.mcversionrenamer.gui.MCVersionRenamerScreen;
+import com.kyfstore.mcversionrenamer.util.KeyInputUtil;
+import com.kyfstore.mcversionrenamer.util.MCVersionRenamerPublicData;
 import com.kyfstore.mcversionrenamer.version.VersionCheckerApi;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.text.Text;
+import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class MCVersionRenamerClient implements ClientModInitializer {
@@ -19,18 +28,36 @@ public class MCVersionRenamerClient implements ClientModInitializer {
     private static final VersionCheckerApi versionChecker = new VersionCheckerApi();
     private static boolean hasCheckedVersion = false;
 
-    // Use string concatenation rather than String.format() for efficiency
     private static String versionName = "Minecraft* " + SharedConstants.getGameVersion();
+
+    public static KeyBinding guiToggleKeyBinding;
+    public static KeyInputUtil guiToggleKeyInput;
 
     @Override
     public void onInitializeClient() {
         versionChecker.onEnable(this);
 
+        guiToggleKeyBinding = KeyBindingHelper.registerKeyBinding(
+                new KeyBinding(
+                        "key.mcversionrenamer.guiToggle",
+                        InputUtil.Type.KEYSYM,
+                        GLFW.GLFW_KEY_LEFT_BRACKET,
+                        "category.mcversionrenamer.default.name"
+                )
+        );
+
         ScreenEvents.AFTER_INIT.register((minecraftClient, screen, i, i1) -> {
-            if (!MCVersionRenamerPublicData.fancyMenuIsLoaded) setClientWindowName(MCVersionRenamerConfig.titleText);
+            if (MCVersionRenamerPublicData.fancyMenuIsLoaded) FancyMenuUtil.setClientWindowTitleName(minecraftClient, Text.literal(MCVersionRenamerPublicData.titleText));
+            setClientWindowName(MCVersionRenamerConfig.titleText);
+
+            guiToggleKeyInput = new KeyInputUtil(guiToggleKeyBinding.getBoundKeyTranslationKey());
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            guiToggleKeyInput.handleKeyPress(() -> {
+                client.setScreen(new MCVersionRenamerScreen(new MCVersionRenamerGui(client.currentScreen)));
+            });
+
             // Move these to the start of the tick to avoid redundant assignments
             if (!hasCheckedVersion && client.currentScreen instanceof TitleScreen) {
                 hasCheckedVersion = true;

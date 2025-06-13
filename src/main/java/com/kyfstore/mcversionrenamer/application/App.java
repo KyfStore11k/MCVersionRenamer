@@ -8,7 +8,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
@@ -18,7 +17,7 @@ import java.util.List;
 
 import org.json.*;
 
-import static com.kyfstore.mcversionrenamer.data.PublicData.*;
+import static com.kyfstore.mcversionrenamer.util.PublicData.*;
 
 public class App {
     private JComboBox<String> mcVersionDropdown;

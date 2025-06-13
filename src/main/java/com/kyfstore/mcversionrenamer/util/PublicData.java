@@ -1,4 +1,4 @@
-package com.kyfstore.mcversionrenamer.data;
+package com.kyfstore.mcversionrenamer.util;
 
 import com.kyfstore.mcversionrenamer.api.AsyncLogger;
 
