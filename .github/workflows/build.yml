@@ -26,7 +26,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           server-id: github
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          settings-path: ${{ github.workspace }}
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4.1.0
@@ -44,6 +44,11 @@ jobs:
           cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215"
           chmod +x gradlew
 
+      - name: Grant execute permission to 1_21_11 Gradle Wrapper
+        run: |
+          cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_12111"
+          chmod +x gradlew
+
       - name: Build root
         run: ./gradlew build
 
@@ -55,6 +60,11 @@ jobs:
       - name: Build 1_21_5
         run: |
           cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215"
+          ./gradlew build
+
+      - name: Build 1_21_11
+        run: |
+          cd "/home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_12111"
           ./gradlew build
 
       - name: Upload Root Build Artifact
@@ -74,3 +84,9 @@ jobs:
         with:
           name: 1_21_5
           path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_1215/build/libs/**.jar
+
+      - name: Upload 1_21_11 Build Artifact
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          name: 1_21_11
+          path: /home/runner/work/MCVersionRenamer/MCVersionRenamer/mcvr_12111/build/libs/**.jar
