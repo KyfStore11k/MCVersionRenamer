@@ -1,6 +1,6 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '2.1.20-RC2'
-    id('fabric-loom') version '1.10-SNAPSHOT'
+    id 'org.jetbrains.kotlin.jvm' version '2.3.20-RC'
+    id('net.fabricmc.fabric-loom-remap') version '1.15-SNAPSHOT'
     id('maven-publish')
     id('checkstyle')
 }
@@ -50,7 +50,7 @@ dependencies {
 
     modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 
-    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.3")))
 
     modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
@@ -62,26 +62,26 @@ dependencies {
     modCompileOnly("maven.modrinth:melody:${project.melody_version}")
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-    implementation include("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+    implementation include("com.squareup.okhttp3:okhttp:5.3.2")
     // https://mvnrepository.com/artifact/com.squareup.okio/okio
-    implementation include("com.squareup.okio:okio:3.10.2")
+    implementation include("com.squareup.okio:okio:3.16.4")
     // https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle
-    implementation include("com.puppycrawl.tools:checkstyle:10.21.4")
+    implementation include("com.puppycrawl.tools:checkstyle:13.2.0")
 
-    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.20-RC2'
+// Source: https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.3.20-RC'
 
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    include(compileOnly(annotationProcessor("org.projectlombok:lombok:1.18.36")))
+    include(compileOnly(annotationProcessor("org.projectlombok:lombok:1.18.42")))
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    include(testCompileOnly(testAnnotationProcessor("org.projectlombok:lombok:1.18.36")))
+    include(testCompileOnly(testAnnotationProcessor("org.projectlombok:lombok:1.18.42")))
 }
 
 processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.findProperty("minecraft_version")
 
-    filesMatching(["fabric.mod.json", "version.json", "mcversionrenamer.mixins.json"]) {
+    filesMatching(["fabric.mod.json", "mcversionrenamer.mixins.json"]) {
         expand(
                 "version": inputs.properties["version"],
                 "minecraft_version": inputs.properties["minecraft_version"]
@@ -118,7 +118,7 @@ tasks.named("processResources") {
 //}
 
 checkstyle {
-    toolVersion = '10.21.4'
+    toolVersion = '13.2.0'
     config = resources.text.fromFile('config/checkstyle/checkstyle.xml')
     maxErrors = 0
 }
