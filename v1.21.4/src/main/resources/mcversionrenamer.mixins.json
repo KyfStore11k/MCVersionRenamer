@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "com.kyfstore.mcversionrenamer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FancyMenuMixin",
+    "MinecraftModuleMixin"
+  ],
+  "client": [
+    "DebugScreenMixin",
+    "TitleScreenMixin",
+    "PauseScreenMixin",
+    "MinecraftModuleMixin",
+    "ClientBrandRetrieverMixin",
+    "LevelSummaryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "refmap": "mcversionrenamer-refmap.json"
+}

@@ -1,0 +1,25 @@
+def config = extensions.create('moduleConfig', ModuleExtension)
+
+interface ModuleExtension {
+    Property<String> getTargetVersion()
+}
+
+afterEvaluate {
+    if (!config.targetVersion.isPresent() || config.targetVersion.get().trim().isEmpty()) {
+        throw new GradleException(
+                "BUILD FAILED: Module [:${project.name}] applied common-conventions " +
+                        "but failed to specify a 'targetVersion' inside the 'moduleConfig' block!"
+        )
+    }
+
+    project.version = config.targetVersion.get()
+
+    println "Successfully configured [:${project.name}] for version: ${project.version}"
+}
+
+repositories {
+    mavenCentral()
+}
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}

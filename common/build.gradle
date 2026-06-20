@@ -1,0 +1,40 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.4.0'
+    id 'java-library'
+}
+
+group = project.maven_group
+version = project.version
+
+base {
+    archivesName = project.archives_base_name + "-common"
+}
+
+repositories {
+    mavenCentral()
+
+    maven { url 'https://maven.fabricmc.net/' }
+
+    maven {
+        name 'Xander Maven'
+        url 'https://maven.isxander.dev/releases'
+    }
+    maven {
+        name = "AlexIIL"
+        url = "https://staging.alexiil.uk/maven/"
+    }
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
+    maven { url "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.4.0"
+
+    compileOnly "dev.isxander:yet-another-config-lib:3.8.2+1.21.11-fabric"
+    compileOnly "com.terraformersmc:modmenu:11.0.1"
+    compileOnly "io.github.cottonmc:LibGui:11.1.0+1.21"
+    compileOnly "com.squareup.okhttp3:okhttp:5.3.2"
+}

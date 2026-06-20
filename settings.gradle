@@ -1,6 +1,22 @@
 pluginManagement {
-	repositories {
-		mavenCentral()
-		gradlePluginPortal()
-	}
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }
+
+
+rootProject.name = "MCVersionRenamer"
+
+include(
+        "common",
+        "v1.21.4",
+        "v1.21.5",
+        "v1.21.11",
+        "v26.1.2",
+        "v26.2"
+)

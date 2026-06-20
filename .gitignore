@@ -30,7 +30,11 @@ bin/
 
 # fabric
 
-run/
+v1.21.4/run
+v1.21.5/run
+v1.21.11/run
+v26.1.2/run
+v26.2/run
 
 # java
 

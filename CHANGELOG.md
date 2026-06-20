@@ -1,5 +1,6 @@
 # Changelog!
 
+- **v1.0.6-REFACTOR-ALPHA**: _Refactored the entirety of the mod to have a shared "common" folder. Added 26.1.2 and 26.2 support._
 - **v1.0.5-PORT-PRE-ALPHA**: _Official 1.21.11 support; Minor bug fixes;_
 - **v1.0.4-SNAPSHOT**: _Added a config option to customize the splash text on the title screen. Revamped the version text config for better flexibility. Also fixed some bugs and cleaned up Gradle dependencies._
 - **v1.0.3-RELEASE**: _Fixed bugs, removed button toggle keybind, added new config option for button visibility, made 1.21.4 use YetAnotherConfigLib, optimizations for 1.21.5; Setup basic MCVersionRenamerInstaller program in root build directory to simply install the jar file directly!_

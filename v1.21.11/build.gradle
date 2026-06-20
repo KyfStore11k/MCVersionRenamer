@@ -1,0 +1,116 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.4.0'
+    id 'net.fabricmc.fabric-loom-remap' version '1.16-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name + "-1.21.11"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir '../common/src/main/java'
+        }
+        kotlin {
+            srcDir '../common/src/main/kotlin'
+        }
+        resources {
+            srcDir '../common/src/resources'
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+
+    maven { url 'https://maven.fabricmc.net/' }
+
+    maven {
+        name = "CottonMC"
+        url = "https://staging.alexiil.uk/maven/"
+    }
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
+    maven {
+        name 'Xander Maven'
+        url 'https://maven.isxander.dev/releases'
+    }
+    maven { url 'https://maven.wispforest.io/releases/' }
+    maven { url "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.11"
+    mappings loom.officialMojangMappings()
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation include("net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}")
+
+    modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
+    modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modImplementation("maven.modrinth:modmenu-badges-lib:${project.modmenu_badges_lib_version}")
+
+    modCompileOnly("maven.modrinth:betterf3:${project.betterf3_version}")
+    modCompileOnly("maven.modrinth:fancymenu:${project.fancymenu_version}")
+    modCompileOnly("maven.modrinth:konkrete:${project.konkrete_version}")
+    modCompileOnly("maven.modrinth:melody:${project.melody_version}")
+
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.3")))
+    implementation include("com.squareup.okhttp3:okhttp:5.3.2")
+    implementation include("com.squareup.okio:okio:3.16.4")
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.4.0'
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", "1.21.11"
+
+    filesMatching(["fabric.mod.json", "mcversionrenamer.mixins.json"]) {
+        expand(
+                "version": version,
+                "minecraft_version": "1.21.11"
+        )
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
+    }
+}
+
+java {
+    withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+jar {
+    inputs.property "archivesName", project.base.archivesName
+    from("LICENSE") {
+        rename { "${it}_${inputs.properties.archivesName}"}
+    }
+}
+
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = project.archives_base_name + "-1.21.11"
+            from components.java
+        }
+    }
+}
