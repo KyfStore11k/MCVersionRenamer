@@ -2,7 +2,6 @@ package com.kyfstore.mcversionrenamer.plugin.api.minecraft.client
 
 import com.kyfstore.mcversionrenamer.MCVersionRenamer
 import net.minecraft.client.Minecraft
-import org.slf4j.LoggerFactory
 
 class ClientAPI {
     var isInitialized: Boolean = false
@@ -15,21 +14,48 @@ class ClientAPI {
         return Minecraft.getInstance()
     }
 
+    fun chain(): ReflectedObject {
+        return ReflectedObject(getMinecraftClientInstance(), this)
+    }
+
+    fun getClientField(fieldName: String): Any? {
+        val client = getMinecraftClientInstance() ?: return null
+        return getFieldFromInstance(client, fieldName)
+    }
+
     fun invokeClientMethod(methodName: String, vararg args: Any?): Any? {
         val client = getMinecraftClientInstance() ?: return null
+        return invokeMethodOnInstance(client, methodName, *args)
+    }
 
+    internal fun getFieldFromInstance(instance: Any, fieldName: String): Any? {
         return try {
-            val bestMethod = client.javaClass.methods
+            val field = try {
+                instance.javaClass.getDeclaredField(fieldName)
+            } catch (e: NoSuchFieldException) {
+                instance.javaClass.getField(fieldName)
+            }
+            field.isAccessible = true
+            field.get(instance)
+        } catch (e: Exception) {
+            MCVersionRenamer.LOGGER.error("Failed to reflect field $fieldName on ${instance.javaClass.simpleName}", e)
+            null
+        }
+    }
+
+    internal fun invokeMethodOnInstance(instance: Any, methodName: String, vararg args: Any?): Any? {
+        return try {
+            val bestMethod = instance.javaClass.methods
                 .filter { it.name == methodName && it.parameterCount == args.size }
                 .map { method -> method to calculateMatchScore(method.parameterTypes, args) }
                 .filter { it.second >= 0 }
                 .maxByOrNull { it.second }
-                ?.first ?: throw NoSuchMethodException("No uniquely matching method $methodName found.")
+                ?.first ?: throw NoSuchMethodException("No matching method $methodName found on ${instance.javaClass.simpleName}.")
 
             bestMethod.isAccessible = true
-            bestMethod.invoke(client, *args)
+            bestMethod.invoke(instance, *args)
         } catch (e: Exception) {
-            MCVersionRenamer.LOGGER.error("Failed to reflect method $methodName", e)
+            MCVersionRenamer.LOGGER.error("Failed to reflect method $methodName on ${instance.javaClass.simpleName}", e)
             null
         }
     }
